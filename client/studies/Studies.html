@@ -1,0 +1,11 @@
+<template name="Studies">
+  <h1>Studies</h1>
+  {{#if $.Session.get 'newStudy'}}
+    {{> NewStudy}}
+  {{else}}
+    <button class="new-recipe">New Study</button>
+  {{/if}}
+  <article class="new-recipe-container">
+    {{> tabular table=TabularTables.Studies class="table table-striped table-bordered"}}
+  </article>
+</template>

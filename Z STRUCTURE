@@ -1,0 +1,40 @@
+USERS
+    id                (handled auto)
+    email             (handled auto)
+    password          (handled auto)
+    studies           --belongsToMany
+
+STUDIES
+    name              String
+    desc              String
+    currentRound      Integer
+    open              Boolean
+    alternatives      --hasMany
+    criteria          --hasMany
+    users             --hasMany
+
+ALTERNATIVES
+    name              String
+    desc              String
+    consensusReached  Boolean
+    study             --belongsToOne
+    votes             --hasMany
+
+CRITERIA
+    name              String
+    desc              String
+    weight            Float
+    study             --belongsToOne
+
+ALTERNATIVE_CRITERIA
+    consensusReached  Boolean
+
+WEIGHTVOTES
+    criterion         --belongsToOne
+    user              --belongsToOne
+    weight            Integer
+
+SCORES
+    alternative       --belongsToOne
+    criterion         --belongsToOne
+    value             Integer
