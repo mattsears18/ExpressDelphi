@@ -6,7 +6,7 @@
           <i class="fa fa-home"></i> Studies
         </a>
       </li>
-      {{#if currentUser.profile.currentStudy}}
+      {{#if $.Session.get 'currentStudy'}}
       <li>
         <a href="/alternatives">
           <i class="fa fa-list"></i> Alternatives
