@@ -5,7 +5,7 @@ Template.Study.onCreated(function() {
     self.subscribe('singleStudy', id);
 
     currentStudy = Studies.findOne({"_id": id});
-    Session.set('currentStudy', currentStudy);     // necessary for proper routing
+    Session.set('currentStudy', currentStudy);     // necessary - don't delete
 
     Meteor.users.update(Meteor.userId(), {$set: {"profile.currentStudy": currentStudy}});
   });
