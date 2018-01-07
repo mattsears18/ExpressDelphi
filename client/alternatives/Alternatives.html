@@ -1,0 +1,14 @@
+<template name="Alternatives">
+  <h1>Alternatives</h1>
+  {{#if currentUser.profile.admin}}
+    {{#if $.Session.get 'newAlternative'}}
+      {{> NewAlternative}}
+    {{else}}
+      <button class="new-recipe">New Alternative</button>
+    {{/if}}
+  {{/if}}
+
+  <article class="new-recipe-container">
+    {{> tabular table=TabularTables.Alternatives selector=selector class="table table-striped table-bordered"}}
+  </article>
+</template>

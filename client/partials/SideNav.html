@@ -6,6 +6,7 @@
           <i class="fa fa-home"></i> Studies
         </a>
       </li>
+      {{#if currentUser.profile.currentStudy}}
       <li>
         <a href="/alternatives">
           <i class="fa fa-list"></i> Alternatives
@@ -21,6 +22,7 @@
           <i class="fa fa-check"></i> Vote
         </a>
       </li>
+      {{/if}}
     </ul>
   </nav>
 </template>

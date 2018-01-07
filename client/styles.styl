@@ -36,9 +36,10 @@ dark-purp = #373142
 red = #E54B4B
 teal = #82D8D8
 dark-teal = #66A6A6
-green = #CBE56C
-blue = #16528E
+green = #73a433
+blue = #235cb3
 bright-blue = #0082C8
+dark-blue = #103361
 maroon = #6A2140
 light-red = #CA5765
 pink = #CF256D
@@ -79,7 +80,7 @@ body
 
 header
     color #FFF
-    background: purp
+    background: blue
     padding 20px
     fixed top left
     width 100%
@@ -106,7 +107,7 @@ p
     margin-bottom 30px
 
 .billboard
-    background dark-purp
+    background dark-blue
     color #FFF
     font-size 2em
     text-align center
@@ -148,12 +149,12 @@ p
 .btn, button
     display inline-block
     cursor pointer
-    background purp
+    background blue
     color #FFF
     text-decoration none
     text-transform uppercase
     padding 5px 15px
-    border solid 3px purp
+    border solid 3px blue
     border-radius 2px
     font-weight 800
     shadow-level(1)
@@ -163,9 +164,9 @@ p
         border-color @background
         shadow-level(2)
     &.btn-primary
-        background teal
-        border-color teal
-        color dark-purp
+        background green
+        border-color green
+        color white
         &:hover
             background @background - 40
             border-color @background
@@ -176,12 +177,12 @@ p
             background @background - 20
             border-color @background
     &.btn-text
-        color purp
+        color blue
         background transparent
-        border solid 2px purp
+        border solid 2px blue
         shadow-level(0)
         &:hover
-            background teal
+            background green
             border-color @background
             shadow-level(1)
     &.btn-text-dark
@@ -191,7 +192,7 @@ p
         shadow-level(0)
         &:hover
             background #FFF
-            color dark-purp
+            color dark-blue
             border-color @background
             shadow-level(1)
     &.btn-confirmation
@@ -200,7 +201,7 @@ p
         border solid 2px @background
         &:hover
             background @background - 20
-            border-color dark-purp
+            border-color dark-blue
     &.btn-cancel
         color #FFF
         background transparent
@@ -215,7 +216,7 @@ p
             border-color @background
 
 input, select, textarea
-    color purp
+    color blue
     background #FFF
     border solid 2px light-grey
     border-radius 2px
@@ -263,7 +264,7 @@ input, select, textarea
     height 100px
     width 100%
     overflow hidden
-    background dark-purp
+    background dark-blue
     color #FFF
     z-index: z.header
     shadow-level(2)
@@ -281,7 +282,7 @@ input, select, textarea
         text-align center
         trans()
         &:hover, &.active
-            background purp
+            background blue
     i
         display block
         font-size 2em
@@ -298,13 +299,13 @@ input, select, textarea
         a
             padding 20px 10px
             &:hover, &.active
-                border-left 4px solid teal
+                border-left 4px solid green
     +above($large)
         width $side-nav-large
         a
             padding 20px 20px
             &:hover, &.active
-                border-left 10px solid teal
+                border-left 10px solid green
 
 .recipe
     background #FFF
@@ -317,7 +318,7 @@ input, select, textarea
     .btn-primary, .btn-deny
         display block
     &.in-menu
-        background teal
+        background green
         color #FFF
         h3
             border-bottom: rgba(255,255,255, 0.6) solid 3px
@@ -346,7 +347,7 @@ input, select, textarea
     .fa-pencil
         right 30px
         &:hover
-            color purple
+            color blue
     .ingredient
         display inline-block
         margin-right 10px
@@ -388,7 +389,7 @@ input, select, textarea
         right 0
         left auto
         a
-            color dark-purp
+            color dark-blue
 
 .current-study
     vertical-align middle
@@ -399,6 +400,7 @@ input, select, textarea
     width 100%
     padding 5px
     padding-left 20px
+    font-size 1.2em
     +above($med)
         padding-left $side-nav + 20
     +above($large)

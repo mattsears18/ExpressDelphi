@@ -6,9 +6,9 @@ import { Template } from 'meteor/templating';
 SimpleSchema.extendOptions(['autoform']);
 
 
-Studies = new Mongo.Collection('studies');
+Alternatives = new Mongo.Collection('alternatives');
 
-Studies.allow({
+Alternatives.allow({
   insert: function(userId, doc) {
     return !!userId;
   },
@@ -17,7 +17,11 @@ Studies.allow({
   },
 });
 
-StudySchema = new SimpleSchema({
+AlternativeSchema = new SimpleSchema({
+  number: {
+    type: Number,
+    label: 'Number',
+  },
   name: {
     type: String,
     label: 'Name',
@@ -25,38 +29,9 @@ StudySchema = new SimpleSchema({
   desc: {
     type: String,
     label: 'Description',
-    optional: true,
     autoform: {
       rows: 8
     },
-  },
-  currentRound: {
-    type: Number,
-    defaultValue: 1,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  open: {
-    type: Boolean,
-    defaultValue: true,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  criteria: {
-    type: Array,
-    optional: true,
-  },
-  'criteria.$': {
-    type: Object,
-  },
-  'criteria.$.name': {
-    type: String,
-  },
-  'criteria.$.weight': {
-    type: Number,
-    optional: true,
   },
   owner: {
     type: String,
@@ -80,25 +55,22 @@ StudySchema = new SimpleSchema({
 });
 
 
-Studies.attachSchema(StudySchema);
+Alternatives.attachSchema(AlternativeSchema);
 
 
-
-StudiesTabular = new Tabular.Table({
-  name: "Studies",
-  collection: Studies,
+AlternativesTabular = new Tabular.Table({
+  name: "Alternatives",
+  collection: Alternatives,
   columns: [
-    {
-       data: "name",
-       title: "Name",
-       render: function(data, type, row, meta){
-          data = '<a href="/studies/' + row._id + '">' + data + '</a>';
-          return data;
-       }
-    },
+    {data: "number", title: "Number"},
+    {data: "name", title: "Name"},
     {data: "desc", title: "Description"},
   ],
   searching: false,
   lengthChange: false,
   paging_type: 'full_numbers',
+});
+
+Alternatives.before.insert(function (userId, doc) {
+  doc.study = Meteor.user().profile.currentStudy._id;
 });

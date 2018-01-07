@@ -6,9 +6,9 @@ import { Template } from 'meteor/templating';
 SimpleSchema.extendOptions(['autoform']);
 
 
-Studies = new Mongo.Collection('studies');
+Criteria = new Mongo.Collection('criteria');
 
-Studies.allow({
+Criteria.allow({
   insert: function(userId, doc) {
     return !!userId;
   },
@@ -17,7 +17,7 @@ Studies.allow({
   },
 });
 
-StudySchema = new SimpleSchema({
+CriterionSchema = new SimpleSchema({
   name: {
     type: String,
     label: 'Name',
@@ -25,38 +25,13 @@ StudySchema = new SimpleSchema({
   desc: {
     type: String,
     label: 'Description',
-    optional: true,
     autoform: {
       rows: 8
     },
   },
-  currentRound: {
+  weight: {
     type: Number,
-    defaultValue: 1,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  open: {
-    type: Boolean,
-    defaultValue: true,
-    autoform: {
-      type: 'hidden',
-    },
-  },
-  criteria: {
-    type: Array,
-    optional: true,
-  },
-  'criteria.$': {
-    type: Object,
-  },
-  'criteria.$.name': {
-    type: String,
-  },
-  'criteria.$.weight': {
-    type: Number,
-    optional: true,
+    label: 'Weight',
   },
   owner: {
     type: String,
@@ -80,25 +55,23 @@ StudySchema = new SimpleSchema({
 });
 
 
-Studies.attachSchema(StudySchema);
+Criteria.attachSchema(CriterionSchema);
 
 
-
-StudiesTabular = new Tabular.Table({
-  name: "Studies",
-  collection: Studies,
+CriteriaTabular = new Tabular.Table({
+  name: "Criteria",
+  collection: Criteria,
   columns: [
-    {
-       data: "name",
-       title: "Name",
-       render: function(data, type, row, meta){
-          data = '<a href="/studies/' + row._id + '">' + data + '</a>';
-          return data;
-       }
-    },
+    {data: "name", title: "Name"},
     {data: "desc", title: "Description"},
+    {data: "weight", title: "Weight"},
   ],
   searching: false,
   lengthChange: false,
   paging_type: 'full_numbers',
+});
+
+
+Criteria.before.insert(function (userId, doc) {
+  doc.study = Meteor.user().profile.currentStudy._id;
 });
