@@ -6,6 +6,6 @@ Template.Alternatives.events({
 
 Template.Alternatives.helpers({
   selector() {
-    return {study: Meteor.user().profile.currentStudy._id};
+    return {study: FlowRouter.getParam('studyId')};
   }
 });

@@ -1,4 +1,4 @@
-Template.StatusBar.onCreated(function() {
+Template.SideNav.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
@@ -6,7 +6,7 @@ Template.StatusBar.onCreated(function() {
   });
 });
 
-Template.StatusBar.helpers({
+Template.SideNav.helpers({
   currentStudy: () => {
     return Studies.findOne();
   },

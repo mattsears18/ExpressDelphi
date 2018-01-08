@@ -6,20 +6,20 @@
           <i class="fa fa-home"></i> Studies
         </a>
       </li>
-      {{#if $.Session.get 'currentStudy'}}
+      {{#if currentStudy}}
       <li>
-        <a href="/alternatives">
+        <a href="/studies/{{currentStudy._id}}/alternatives">
           <i class="fa fa-list"></i> Alternatives
         </a>
       </li>
       <li>
-        <a href="/criteria">
+        <a href="/studies/{{currentStudy._id}}/criteria">
           <i class="fa fa-info"></i> Criteria
         </a>
       </li>
       <li>
-        <a href="/vote">
-          <i class="fa fa-check"></i> Vote
+        <a href="/studies/{{currentStudy._id}}/rate">
+          <i class="fa fa-check"></i> Rate
         </a>
       </li>
       {{/if}}

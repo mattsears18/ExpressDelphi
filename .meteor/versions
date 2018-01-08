@@ -58,7 +58,6 @@ localstorage@1.2.0
 logging@1.1.19
 matb33:bootstrap-base@10.0.0
 matb33:bootstrap-glyphicons@10.0.0
-matb33:collection-hooks@0.8.4
 mdg:validation-error@0.2.0
 meteor@1.8.2
 meteor-base@1.2.0

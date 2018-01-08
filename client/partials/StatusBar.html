@@ -1,11 +1,11 @@
 <template name="StatusBar">
-  {{#if $.Session.get 'currentStudy'}}
+  {{#if currentStudy}}
   <div class="status-bar">
     <span class="current-study">
-      <strong>Current Study:</strong> {{currentUser.profile.currentStudy.name}}
+      <strong>Current Study:</strong> {{currentStudy.name}}
     </span>
     <span class="current-round">
-      <strong>Round:</strong> {{currentUser.profile.currentStudy.currentRound}}
+      <strong>Current Round:</strong> {{currentStudy.currentRound}}
     </span>
   </div>
   {{/if}}

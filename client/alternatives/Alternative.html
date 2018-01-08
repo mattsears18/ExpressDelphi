@@ -1,0 +1,17 @@
+<template name="Alternative">
+  <h1>
+    {{alternative.name}}
+    {{#if currentUser.profile.admin}}
+      {{#unless $.Session.get 'updateAlternative'}}
+        <a href="#"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h1>
+
+  {{#if $.Session.get 'updateAlternative'}}
+    {{> UpdateAlternative}}
+  {{else}}
+    <p><strong>Number:</strong> {{alternative.number}}</p>
+    <p>{{alternative.desc}}</p>
+  {{/if}}
+</template>

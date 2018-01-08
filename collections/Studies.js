@@ -33,9 +33,6 @@ StudySchema = new SimpleSchema({
   currentRound: {
     type: Number,
     defaultValue: 1,
-    autoform: {
-      type: 'hidden',
-    },
   },
   open: {
     type: Boolean,
@@ -44,10 +41,10 @@ StudySchema = new SimpleSchema({
       type: 'hidden',
     },
   },
-  criteria: {
-    type: Array,
-    optional: true,
-  },
+  // criteria: {
+  //   type: Array,
+  //   optional: true,
+  // },
   'criteria.$': {
     type: Object,
   },
@@ -83,7 +80,6 @@ StudySchema = new SimpleSchema({
 Studies.attachSchema(StudySchema);
 
 
-
 StudiesTabular = new Tabular.Table({
   name: "Studies",
   collection: Studies,
@@ -97,6 +93,7 @@ StudiesTabular = new Tabular.Table({
        }
     },
     {data: "desc", title: "Description"},
+    {data: "currentRound", title: "Current Round"},
   ],
   searching: false,
   lengthChange: false,

@@ -28,10 +28,12 @@ CriterionSchema = new SimpleSchema({
     autoform: {
       rows: 8
     },
+    optional: true,
   },
   weight: {
     type: Number,
     label: 'Weight',
+    optional: true,
   },
   owner: {
     type: String,
@@ -41,6 +43,17 @@ CriterionSchema = new SimpleSchema({
     autoform: {
       type: 'hidden',
     },
+  },
+  study: {
+    type: String,
+    label: 'Study',
+    optional: true,
+    autoform: {
+      value: function() {
+        return FlowRouter.getParam('studyId');
+      },
+      type: 'hidden'
+    }
   },
   createdAt: {
     type: Date,
@@ -62,16 +75,16 @@ CriteriaTabular = new Tabular.Table({
   name: "Criteria",
   collection: Criteria,
   columns: [
-    {data: "name", title: "Name"},
+    {
+       data: "name",
+       title: "Name",
+       render: function(data, type, row, meta){
+          data = '<a href="/studies/' + FlowRouter.getParam('studyId') + '/criteria/' + row._id + '">' + data + '</a>';
+          return data;
+       }
+    },
     {data: "desc", title: "Description"},
     {data: "weight", title: "Weight"},
   ],
-  searching: false,
   lengthChange: false,
-  paging_type: 'full_numbers',
-});
-
-
-Criteria.before.insert(function (userId, doc) {
-  doc.study = Meteor.user().profile.currentStudy._id;
 });

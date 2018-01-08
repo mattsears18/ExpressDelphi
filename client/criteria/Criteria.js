@@ -9,6 +9,6 @@ Template.Criteria.helpers({
     return Criteria.find({});
   },
   selector() {
-    return {study: Meteor.user().profile.currentStudy._id};
+    return {study: FlowRouter.getParam('studyId')};
   }
 });

@@ -1,18 +1,31 @@
 Template.Study.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    var id = FlowRouter.getParam('id');
-    self.subscribe('singleStudy', id);
-
-    currentStudy = Studies.findOne({"_id": id});
-    Session.set('currentStudy', currentStudy);     // necessary - don't delete
-
-    Meteor.users.update(Meteor.userId(), {$set: {"profile.currentStudy": currentStudy}});
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('currentStudy', studyId);
   });
 });
 
 Template.Study.helpers({
   study: () => {
     return Studies.findOne();
+  },
+});
+
+Template.Study.events({
+  'click .next-round': function() {
+    Meteor.call('studies.startNextRound', {
+      studyId: FlowRouter.getParam('studyId'),
+    }, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        // success!
+      }
+    });
+  },
+  'click .fa-pencil': function() {
+    console.log('show the study update form');
+    Session.set('updateStudy', true);
   },
 });

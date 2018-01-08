@@ -1,4 +1,20 @@
 <template name="Study">
-  <h1>{{study.name}}</h1>
-  <p>{{study.desc}}</p>
+  <h1>
+    {{study.name}}
+    {{#if currentUser.profile.admin}}
+      {{#unless $.Session.get 'updateStudy'}}
+        <a href="#"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h1>
+
+  {{#if $.Session.get 'updateStudy'}}
+    {{> UpdateStudy}}
+  {{else}}
+    <p>{{study.desc}}</p>
+  {{/if}}
+
+  {{#if currentUser.profile.admin}}
+    <button class="btn-primary next-round">Start Next Round</button>
+  {{/if}}
 </template>

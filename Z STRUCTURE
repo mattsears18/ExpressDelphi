@@ -18,7 +18,8 @@ ALTERNATIVES
     desc              String
     consensusReached  Boolean
     study             --belongsToOne
-    votes             --hasMany
+    weightVotes       --hasMany
+    roundCriteria     --hasMany
 
 CRITERIA
     name              String
@@ -34,7 +35,17 @@ WEIGHTVOTES
     user              --belongsToOne
     weight            Integer
 
-SCORES
+RATING
+    user              --belongsToOne
+    study             --belongsToOne
+    roundCriteria     Integer
     alternative       --belongsToOne
     criterion         --belongsToOne
-    value             Integer
+    value             Integer (1 to 10)
+
+
+
+select all alternatives that have roundCriteria (consensus not reached yet) that
+  match the currentStudy's currentRound and all of the criteria haven't already
+  been rated by the current user. Randomly display one of the alternatives to
+  the user and ask them to complete the ratings.

@@ -33,6 +33,17 @@ AlternativeSchema = new SimpleSchema({
       rows: 8
     },
   },
+  study: {
+    type: String,
+    label: 'Study',
+    optional: true,
+    autoform: {
+      value: function() {
+        return FlowRouter.getParam('studyId');
+      },
+      type: 'hidden'
+    }
+  },
   owner: {
     type: String,
     autoValue: function() {
@@ -62,15 +73,15 @@ AlternativesTabular = new Tabular.Table({
   name: "Alternatives",
   collection: Alternatives,
   columns: [
-    {data: "number", title: "Number"},
-    {data: "name", title: "Name"},
+    {
+       data: "name",
+       title: "Name",
+       render: function(data, type, row, meta){
+          data = '<a href="/studies/' + FlowRouter.getParam('studyId') + '/alternatives/' + row._id + '">' + data + '</a>';
+          return data;
+       }
+    },
     {data: "desc", title: "Description"},
   ],
-  searching: false,
   lengthChange: false,
-  paging_type: 'full_numbers',
-});
-
-Alternatives.before.insert(function (userId, doc) {
-  doc.study = Meteor.user().profile.currentStudy._id;
 });

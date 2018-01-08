@@ -409,16 +409,19 @@ input, select, textarea
         margin-right 40px
 
 .footer
+    background light-grey
     width 100%
+    fixed bottom
     padding 5px
     padding-left 20px
-    fixed bottom
-    margin-bottom 110px
+    padding-bottom 105px
     text-align center
     +above($med)
         padding-left $side-nav + 20
-        margin-bottom 10px
+        padding-bottom 5px
     +above($large)
         padding-left $side-nav-large + 20
     a
       color #999
+
+//.dataTables_wrapper .dataTables_filter input
