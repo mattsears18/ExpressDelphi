@@ -53,18 +53,28 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   columns: [
-    {data: "round", title: "Round"},
     {data: "alternative", title: "Alternative"},
     {data: "criterion", title: "Criterion"},
     {
-       title: "Consensus Reached",
+      data: "comments",
+       title: "Comments",
        render: function(data, type, row, meta){
-          data = Meteor.user()._id;
-          return data;
+         if(data) {
+           return `<a href="#">View ${data.length}</a>`
+         } else {
+           data = 'None'
+         }
+         return data;
        }
+    },
+    {
+      data: "consensusReached",
+       title: "Consensus Reached",
+       tmpl: Meteor.isClient && Template.PairsConsensusCell,
     },
   ],
   searching: false,
-  lengthChange: false,
+  paging: false,
+  limit: 500,
   paging_type: 'full_numbers',
 });

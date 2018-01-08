@@ -1,0 +1,26 @@
+<template name="PairsConsensusCell">
+  {{#if currentUser.profile.admin}}
+    <button class="btn
+      {{#if this.consensusReached}}
+        btn-primary btn-yes
+      {{else}}
+        btn-option
+      {{/if}}
+    ">YES</button>
+
+    &nbsp;<button class="btn
+      {{#unless this.consensusReached}}
+        btn-deny btn-no
+      {{else}}
+        btn-option
+      {{/unless}}
+    ">NO</button>
+
+  {{else}}
+    {{#if this.consensusReached}}
+      <button class="btn btn-primary btn-yes">YES</button>
+    {{else}}
+      <button class="btn btn-deny btn-no">NO</button>
+    {{/if}}
+  {{/if}}
+</template>
