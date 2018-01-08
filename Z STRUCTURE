@@ -46,6 +46,7 @@ PAIRS
 
 RATING
     user              --belongsToOne
+    pair              --belongsToOne
     study             --belongsToOne
     roundCriteria     Integer
     alternative       --belongsToOne

@@ -32,7 +32,7 @@ StudySchema = new SimpleSchema({
   },
   currentRound: {
     type: Number,
-    defaultValue: 1,
+    defaultValue: 0,
   },
   open: {
     type: Boolean,

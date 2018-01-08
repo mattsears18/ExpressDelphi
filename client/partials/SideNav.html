@@ -7,21 +7,23 @@
         </a>
       </li>
       {{#if currentStudy}}
-      <li>
-        <a href="/studies/{{currentStudy._id}}/alternatives">
-          <i class="fa fa-list"></i> Alternatives
-        </a>
-      </li>
-      <li>
-        <a href="/studies/{{currentStudy._id}}/criteria">
-          <i class="fa fa-info"></i> Criteria
-        </a>
-      </li>
-      <li>
-        <a href="/studies/{{currentStudy._id}}/rate">
-          <i class="fa fa-check"></i> Rate
-        </a>
-      </li>
+        <li>
+          <a href="/studies/{{currentStudy._id}}/alternatives">
+            <i class="fa fa-list"></i> Alternatives
+          </a>
+        </li>
+        <li>
+          <a href="/studies/{{currentStudy._id}}/criteria">
+            <i class="fa fa-info"></i> Criteria
+          </a>
+        </li>
+          {{#if currentStudy.currentRound}}
+          <li>
+            <a href="/studies/{{currentStudy._id}}/rate">
+              <i class="fa fa-check"></i> Rate
+            </a>
+          </li>
+          {{/if}}
       {{/if}}
     </ul>
   </nav>
