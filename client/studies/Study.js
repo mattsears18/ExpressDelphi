@@ -10,7 +10,12 @@ Template.Study.helpers({
   study: () => {
     return Studies.findOne();
   },
+  pairsSelector() {
+    return {study: FlowRouter.getParam('studyId')};
+  },
 });
+
+
 
 Template.Study.events({
   'click .next-round': function() {

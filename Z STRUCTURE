@@ -35,6 +35,15 @@ WEIGHTVOTES
     user              --belongsToOne
     weight            Integer
 
+
+PAIRS
+    study             --belongsToOne
+    roundCriteria     Integer
+    alternative       --belontsToOne
+    criterion         --belongsToOne
+    consensusReached  Boolean
+
+
 RATING
     user              --belongsToOne
     study             --belongsToOne
@@ -49,3 +58,6 @@ select all alternatives that have roundCriteria (consensus not reached yet) that
   match the currentStudy's currentRound and all of the criteria haven't already
   been rated by the current user. Randomly display one of the alternatives to
   the user and ask them to complete the ratings.
+
+
+ratingpairs

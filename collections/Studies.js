@@ -41,10 +41,6 @@ StudySchema = new SimpleSchema({
       type: 'hidden',
     },
   },
-  // criteria: {
-  //   type: Array,
-  //   optional: true,
-  // },
   'criteria.$': {
     type: Object,
   },
@@ -92,8 +88,14 @@ StudiesTabular = new Tabular.Table({
           return data;
        }
     },
-    {data: "desc", title: "Description"},
     {data: "currentRound", title: "Current Round"},
+    {
+       title: "Results",
+       render: function(data, type, row, meta){
+          data = '<a href="/studies/' + row._id + '/results" class="btn btn-primary">Results</a>';
+          return data;
+       }
+    },
   ],
   searching: false,
   lengthChange: false,
