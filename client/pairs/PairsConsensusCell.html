@@ -6,7 +6,7 @@
       {{else}}
         btn-option
       {{/if}}
-    ">YES</button>
+    " data-consensusreached="true">YES</button>
 
     &nbsp;<button class="btn
       {{#unless this.consensusReached}}
@@ -14,7 +14,7 @@
       {{else}}
         btn-option
       {{/unless}}
-    ">NO</button>
+    " data-consensusreached="false">NO</button>
 
   {{else}}
     {{#if this.consensusReached}}
