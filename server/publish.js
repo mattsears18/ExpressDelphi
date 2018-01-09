@@ -69,25 +69,19 @@ Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, 
   check(ids, Array);
   check(fields, Match.Optional(Object));
 
-  //this.unblock(); // requires meteorhacks:unblock package
-
   return {
     find: function () {
-    //  this.unblock(); // requires meteorhacks:unblock package
-
-      // check for admin role with alanning:roles package
-      // if (!Roles.userIsInRole(this.userId, 'admin')) {
-      //   return [];
-      // }
-
       return Pairs.find({_id: {$in: ids}}, {fields: fields});
     },
     children: [
       {
         find: function(pair) {
-          //this.unblock(); // requires meteorhacks:unblock package
-          // Publish the related user
           return Alternatives.find({_id: pair.alternativeId}, {limit: 1, fields: {name: 1, study: 1}});
+        }
+      },
+      {
+        find: function(pair) {
+          return Criteria.find({_id: pair.criterionId}, {limit: 1, fields: {name: 1, study: 1}});
         }
       }
     ]

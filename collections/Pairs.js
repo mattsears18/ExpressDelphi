@@ -55,7 +55,7 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   pub: "tabular_pairsWithRelations",
-  extraFields: ['alternativeId'],
+  extraFields: ['alternativeId', 'criterionId'],
   columns: [
     {
       data: 'alternative()',
@@ -64,7 +64,13 @@ PairsTabular = new Tabular.Table({
         return `<a href="/studies/${data.study}/alternatives/${data._id}">${data.name}</a>`;
       }
     },
-    {data: "criterionId", title: "Criterion"},
+    {
+      data: 'criterion()',
+      title: 'Criterion',
+      render: function(data, type, row, meta) {
+        return `<a href="/studies/${data.study}/criteria/${data._id}">${data.name}</a>`;
+      }
+    },
     {
       data: "comments",
        title: "Comments",
@@ -92,6 +98,9 @@ PairsTabular = new Tabular.Table({
 Pairs.helpers({
   alternative() {
     return Alternatives.findOne(this.alternativeId);
+  },
+  criterion() {
+    return Criteria.findOne(this.criterionId);
   }
 });
 
