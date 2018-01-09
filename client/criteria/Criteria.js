@@ -1,10 +1,10 @@
-Template.Monkeys.events({
+Template.Criteria.events({
   'click .new-recipe': function() {
-    Session.set('newMonkey', true);
+    Session.set('newCriterion', true);
   }
 });
 
-Template.Monkeys.helpers({
+Template.Criteria.helpers({
   selector() {
     return {studyId: FlowRouter.getParam('studyId')};
   }

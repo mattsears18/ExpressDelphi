@@ -4,14 +4,14 @@ Template.Study.onCreated(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('currentStudy', studyId);
     self.subscribe('alternatives', studyId);
-    self.subscribe('monkeys', studyId);
+    self.subscribe('criteria', studyId);
   });
 });
 
 Template.Study.helpers({
   study: () =>      { return Studies.findOne(); },
   alternatives: () => { return Alternatives.find(); },
-  monkeys: () => { return Monkeys.find(); },
+  criteria: () => { return Criteria.find(); },
 
   pairsSelector: function() {
     study = Studies.findOne({_id: FlowRouter.getParam('studyId')});

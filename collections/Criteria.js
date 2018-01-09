@@ -6,9 +6,9 @@ import { Template } from 'meteor/templating';
 SimpleSchema.extendOptions(['autoform']);
 
 
-Monkeys = new Mongo.Collection('monkeys');
+Criteria = new Mongo.Collection('criteria');
 
-Monkeys.allow({
+Criteria.allow({
   insert: function(userId, doc) {
     return !!userId;
   },
@@ -17,11 +17,7 @@ Monkeys.allow({
   },
 });
 
-MonkeySchema = new SimpleSchema({
-  number: {
-    type: Number,
-    label: 'Number',
-  },
+CriterionSchema = new SimpleSchema({
   name: {
     type: String,
     label: 'Name',
@@ -67,18 +63,18 @@ MonkeySchema = new SimpleSchema({
 });
 
 
-Monkeys.attachSchema(MonkeySchema);
+Criteria.attachSchema(CriterionSchema);
 
 
-MonkeysTabular = new Tabular.Table({
-  name: "Monkeys",
-  collection: Monkeys,
+CriteriaTabular = new Tabular.Table({
+  name: "Criteria",
+  collection: Criteria,
   columns: [
     {
        data: "name",
        title: "Name",
        render: function(data, type, row, meta){
-          data = '<a href="/studies/' + FlowRouter.getParam('studyId') + '/monkeys/' + row._id + '">' + data + '</a>';
+          data = '<a href="/studies/' + FlowRouter.getParam('studyId') + '/criteria/' + row._id + '">' + data + '</a>';
           return data;
        }
     },
@@ -87,4 +83,4 @@ MonkeysTabular = new Tabular.Table({
   lengthChange: false,
 });
 
-export default Monkeys;
+export default Criteria;

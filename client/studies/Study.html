@@ -22,10 +22,10 @@
   </article>
   {{#if currentUser.profile.admin}}
     {{#if alternatives.count}}
-      {{#if monkeys.count}}
+      {{#if criteria.count}}
         <button class="btn next-round">Start New Round</button>
       {{else}}
-        Create Monkeys before starting the first round!<br>
+        Create Criteria before starting the first round!<br>
       {{/if}}
     {{else}}
       Create Alternatives before starting the first round!<br>
