@@ -1,0 +1,14 @@
+<template name="Monkeys">
+  <h1>Monkeys</h1>
+  {{#if currentUser.profile.admin}}
+    {{#if $.Session.get 'newMonkey'}}
+      {{> NewMonkey}}
+    {{else}}
+      <button class="new-recipe">New Monkey</button>
+    {{/if}}
+  {{/if}}
+
+  <article class="new-recipe-container">
+    {{> tabular table=TabularTables.Monkeys selector=selector class="table table-striped table-bordered"}}
+  </article>
+</template>

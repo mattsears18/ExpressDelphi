@@ -17,7 +17,14 @@
             <i class="fa fa-info"></i> Criteria
           </a>
         </li>
-          {{#if currentStudy.currentRound}}
+
+        <li>
+          <a href="/studies/{{currentStudy._id}}/monkeys">
+            <i class="fa fa-info"></i> Monkeys
+          </a>
+        </li>
+
+        {{#if currentStudy.currentRound}}
           <li>
             <a href="/studies/{{currentStudy._id}}/rate">
               <i class="fa fa-check"></i> Rate

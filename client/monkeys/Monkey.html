@@ -1,0 +1,17 @@
+<template name="Monkey">
+  <h1>
+    {{monkey.name}}
+    {{#if currentUser.profile.admin}}
+      {{#unless $.Session.get 'updateMonkey'}}
+        <a href="#"><i class="fa fa-pencil"></i></a>
+      {{/unless}}
+    {{/if}}
+  </h1>
+
+  {{#if $.Session.get 'updateMonkey'}}
+    {{> UpdateMonkey}}
+  {{else}}
+    <p><strong>Number:</strong> {{monkey.number}}</p>
+    <p>{{monkey.desc}}</p>
+  {{/if}}
+</template>
