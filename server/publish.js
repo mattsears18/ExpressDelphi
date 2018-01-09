@@ -43,21 +43,53 @@ Meteor.publish('singleCriterion', function(id) {
 ////////////////////////////////////////////////////////////////////////////////
 // PAIRS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
-publishComposite('pairsWithRelations', {
-    find() {
-        // Find top ten highest scoring posts
-        return Pairs.find({});
+// publishComposite('pairsWithRelations', {
+//     find() {
+//         // Find top ten highest scoring posts
+//         return Pairs.find({});
+//     },
+//     children: [
+//         {
+//             find(pair) {
+//                 // Find post author. Even though we only want to return
+//                 // one record here, we use "find" instead of "findOne"
+//                 // since this function should return a cursor.
+//                 return Alternatives.find(
+//                     { _id: pair.alternativeId },
+//                     { fields: { name: 1 } });
+//             }
+//         },
+//     ]
+// });
+
+
+
+Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, fields) {
+  check(tableName, String);
+  check(ids, Array);
+  check(fields, Match.Optional(Object));
+
+  //this.unblock(); // requires meteorhacks:unblock package
+
+  return {
+    find: function () {
+    //  this.unblock(); // requires meteorhacks:unblock package
+
+      // check for admin role with alanning:roles package
+      // if (!Roles.userIsInRole(this.userId, 'admin')) {
+      //   return [];
+      // }
+
+      return Pairs.find({_id: {$in: ids}}, {fields: fields});
     },
     children: [
-        {
-            find(pair) {
-                // Find post author. Even though we only want to return
-                // one record here, we use "find" instead of "findOne"
-                // since this function should return a cursor.
-                return Alternatives.find(
-                    { _id: pair.alternativeId },
-                    { fields: { name: 1 } });
-            }
-        },
+      {
+        find: function(pair) {
+          //this.unblock(); // requires meteorhacks:unblock package
+          // Publish the related user
+          return Alternatives.find({_id: pair.alternativeId}, {limit: 1, fields: {name: 1, study: 1}});
+        }
+      }
     ]
+  };
 });

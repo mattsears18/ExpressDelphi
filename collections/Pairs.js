@@ -54,8 +54,16 @@ Pairs.attachSchema(PairSchema);
 PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
+  pub: "tabular_pairsWithRelations",
+  extraFields: ['alternativeId'],
   columns: [
-    {data: 'alternativeId', title: 'alternativeId'},
+    {
+      data: 'alternative()',
+      title: 'Alternative',
+      render: function(data, type, row, meta) {
+        return `<a href="/studies/${data.study}/alternatives/${data._id}">${data.name}</a>`;
+      }
+    },
     {data: "criterionId", title: "Criterion"},
     {
       data: "comments",
@@ -79,6 +87,12 @@ PairsTabular = new Tabular.Table({
   paging: false,
   limit: 500,
   paging_type: 'full_numbers',
+});
+
+Pairs.helpers({
+  alternative() {
+    return Alternatives.findOne(this.alternativeId);
+  }
 });
 
 export default Pairs;

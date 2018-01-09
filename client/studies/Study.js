@@ -3,7 +3,7 @@ Template.Study.onCreated(function() {
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('currentStudy', studyId);
-    self.subscribe('pairsWithRelations');
+    // self.subscribe('pairsWithRelations');
   });
 });
 
@@ -11,16 +11,16 @@ Template.Study.helpers({
   study: () => {
     return Studies.findOne();
   },
-  pairsSelector() {
-    study = Studies.findOne({_id: FlowRouter.getParam('studyId')});
-
-    if(study) {
-      return {
-        studyId: study._id,
-        round: study.currentRound,
-      }
-    }
-  },
+  // pairsSelector() {
+  //   study = Studies.findOne({_id: FlowRouter.getParam('studyId')});
+  //
+  //   if(study) {
+  //     return {
+  //       studyId: study._id,
+  //       round: study.currentRound,
+  //     }
+  //   }
+  // },
   pairs() {
       return Pairs.find();
   },
