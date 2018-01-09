@@ -9,6 +9,6 @@ Template.Criteria.helpers({
     return Criteria.find({});
   },
   selector() {
-    return {study: FlowRouter.getParam('studyId')};
+    return {studyId: FlowRouter.getParam('studyId')};
   }
 });

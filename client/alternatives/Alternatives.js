@@ -6,6 +6,6 @@ Template.Alternatives.events({
 
 Template.Alternatives.helpers({
   selector() {
-    return {study: FlowRouter.getParam('studyId')};
+    return {studyId: FlowRouter.getParam('studyId')};
   }
 });

@@ -17,7 +17,7 @@ Meteor.publish('currentStudy', function(id) {
 // ALTERNATIVES PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
 Meteor.publish('alternatives', function(studyId) {
-  return Alternatives.find({study: studyId});
+  return Alternatives.find({studyId: studyId});
 });
 
 Meteor.publish('singleAlternative', function(id) {
@@ -43,27 +43,6 @@ Meteor.publish('singleCriterion', function(id) {
 ////////////////////////////////////////////////////////////////////////////////
 // PAIRS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
-// publishComposite('pairsWithRelations', {
-//     find() {
-//         // Find top ten highest scoring posts
-//         return Pairs.find({});
-//     },
-//     children: [
-//         {
-//             find(pair) {
-//                 // Find post author. Even though we only want to return
-//                 // one record here, we use "find" instead of "findOne"
-//                 // since this function should return a cursor.
-//                 return Alternatives.find(
-//                     { _id: pair.alternativeId },
-//                     { fields: { name: 1 } });
-//             }
-//         },
-//     ]
-// });
-
-
-
 Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);
@@ -76,12 +55,12 @@ Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, 
     children: [
       {
         find: function(pair) {
-          return Alternatives.find({_id: pair.alternativeId}, {limit: 1, fields: {name: 1, study: 1}});
+          return Alternatives.find({_id: pair.alternativeId}, {limit: 1, fields: {name: 1, studyId: 1}});
         }
       },
       {
         find: function(pair) {
-          return Criteria.find({_id: pair.criterionId}, {limit: 1, fields: {name: 1, study: 1}});
+          return Criteria.find({_id: pair.criterionId}, {limit: 1, fields: {name: 1, studyId: 1}});
         }
       }
     ]

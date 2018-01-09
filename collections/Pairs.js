@@ -55,7 +55,7 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   pub: "tabular_pairsWithRelations",
-  extraFields: ['alternativeId', 'criterionId'],
+  extraFields: ['alternativeId', 'criterionId', 'studyId'],
   columns: [
     {
       data: 'alternative()',

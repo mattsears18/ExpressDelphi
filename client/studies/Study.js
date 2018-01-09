@@ -9,7 +9,15 @@ Template.Study.onCreated(function() {
 Template.Study.helpers({
   study: () =>      { return Studies.findOne(); },
 
-  pairs: () =>      { return Pairs.find(); },
+  pairsSelector: function() {
+    study = Studies.findOne({_id: FlowRouter.getParam('studyId')});
+    if(study) {
+      return {
+        studyId: FlowRouter.getParam('studyId'),
+        round: study.currentRound,
+      };
+    }
+  }
 });
 
 

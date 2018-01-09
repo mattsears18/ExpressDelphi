@@ -33,7 +33,7 @@ AlternativeSchema = new SimpleSchema({
       rows: 8
     },
   },
-  study: {
+  studyId: {
     type: String,
     label: 'Study',
     optional: true,
@@ -44,7 +44,7 @@ AlternativeSchema = new SimpleSchema({
       type: 'hidden'
     }
   },
-  owner: {
+  ownerId: {
     type: String,
     autoValue: function() {
       return this.userId;

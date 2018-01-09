@@ -35,7 +35,7 @@ CriterionSchema = new SimpleSchema({
     label: 'Weight',
     optional: true,
   },
-  owner: {
+  ownerId: {
     type: String,
     autoValue: function() {
       return this.userId;
@@ -44,7 +44,7 @@ CriterionSchema = new SimpleSchema({
       type: 'hidden',
     },
   },
-  study: {
+  studyId: {
     type: String,
     label: 'Study',
     optional: true,
