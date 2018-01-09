@@ -3,6 +3,7 @@ Template.Study.onCreated(function() {
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
     self.subscribe('currentStudy', studyId);
+    self.subscribe('pairsWithRelations');
   });
 });
 
@@ -15,11 +16,19 @@ Template.Study.helpers({
 
     if(study) {
       return {
-        study: study._id,
+        studyId: study._id,
         round: study.currentRound,
       }
     }
   },
+  pairs() {
+      return Pairs.find();
+  },
+  pairAlternative() {
+      // We use this helper inside the {{#each posts}} loop, so the context
+      // will be a post object. Thus, we can use this.authorId.
+      return Alternatives.findOne(this.alternativeId);
+  }
 });
 
 
@@ -37,7 +46,6 @@ Template.Study.events({
     });
   },
   'click .fa-pencil': function() {
-    console.log('show the study update form');
     Session.set('updateStudy', true);
   },
 });

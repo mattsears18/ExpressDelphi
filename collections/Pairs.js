@@ -18,7 +18,7 @@ Pairs.allow({
 });
 
 PairSchema = new SimpleSchema({
-  study: {
+  studyId: {
     type: String,
   },
   round: {
@@ -28,7 +28,7 @@ PairSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  criterion: {
+  criterionId: {
     type: String,
     optional: true,
   },
@@ -55,14 +55,8 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   columns: [
-    {
-       title: "Alternative",
-       render: function(data, type, row, meta){
-         console.log(row.alternative);
-         return '<font color="red">Alternative placeholder - pick back up in the "Pairs.js" file</font>';
-       }
-    },
-    {data: "criterion", title: "Criterion"},
+    {data: 'alternativeId', title: 'alternativeId'},
+    {data: "criterionId", title: "Criterion"},
     {
       data: "comments",
        title: "Comments",
@@ -77,8 +71,8 @@ PairsTabular = new Tabular.Table({
     },
     {
       data: "consensusReached",
-       title: "Consensus Reached",
-       tmpl: Meteor.isClient && Template.PairsConsensusCell,
+      title: "Consensus Reached",
+      tmpl: Meteor.isClient && Template.PairsConsensusCell,
     },
   ],
   searching: false,

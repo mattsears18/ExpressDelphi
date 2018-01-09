@@ -1,3 +1,7 @@
 <template name="Test">
-  {{test}}
+  <ul>
+    {{#each pairs}}
+      <li>{{pairAlternative.name}}</li>
+    {{/each}}
+  </ul>
 </template>

@@ -1,3 +1,5 @@
+import { publishComposite } from 'meteor/reywood:publish-composite';
+
 ////////////////////////////////////////////////////////////////////////////////
 // STUDIES PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
@@ -34,4 +36,28 @@ Meteor.publish('criteria', function(studyId) {
 Meteor.publish('singleCriterion', function(id) {
   check(id, String);
   return Criteria.find({_id: id});
+});
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// PAIRS PUBLICATIONS
+////////////////////////////////////////////////////////////////////////////////
+publishComposite('pairsWithRelations', {
+    find() {
+        // Find top ten highest scoring posts
+        return Pairs.find({});
+    },
+    children: [
+        {
+            find(pair) {
+                // Find post author. Even though we only want to return
+                // one record here, we use "find" instead of "findOne"
+                // since this function should return a cursor.
+                return Alternatives.find(
+                    { _id: pair.alternativeId },
+                    { fields: { name: 1 } });
+            }
+        },
+    ]
 });
