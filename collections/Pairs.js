@@ -87,6 +87,4 @@ PairsTabular = new Tabular.Table({
   paging_type: 'full_numbers',
 });
 
-Pairs.expose();
-
 export default Pairs;
