@@ -28,7 +28,7 @@ PairSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  criterionId: {
+  monkeyId: {
     type: String,
     optional: true,
   },
@@ -55,7 +55,7 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   pub: "tabular_pairsWithRelations",
-  extraFields: ['alternativeId', 'criterionId', 'studyId'],
+  extraFields: ['alternativeId', 'monkeyId', 'studyId'],
   columns: [
     {
       data: 'alternative()',
@@ -65,10 +65,10 @@ PairsTabular = new Tabular.Table({
       }
     },
     {
-      data: 'criterion()',
-      title: 'Criterion',
+      data: 'monkey()',
+      title: 'Monkey',
       render: function(data, type, row, meta) {
-        return `<a href="/studies/${data.study}/criteria/${data._id}">${data.name}</a>`;
+        return `<a href="/studies/${data.study}/monkeys/${data._id}">${data.name}</a>`;
       }
     },
     {
@@ -99,9 +99,9 @@ Pairs.helpers({
   alternative() {
     return Alternatives.findOne(this.alternativeId);
   },
-  criterion() {
-    return Criteria.findOne(this.criterionId);
-  }
+  monkey() {
+    return Monkeys.findOne(this.monkeyId);
+  },
 });
 
 export default Pairs;

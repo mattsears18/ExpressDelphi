@@ -42,16 +42,6 @@ StudySchema = new SimpleSchema({
       type: 'hidden',
     },
   },
-  // 'criteria.$': {
-  //   type: Object,
-  // },
-  // 'criteria.$.name': {
-  //   type: String,
-  // },
-  // 'criteria.$.weight': {
-  //   type: Number,
-  //   optional: true,
-  // },
   ownerId: {
     type: String,
     autoValue: function() {

@@ -21,22 +21,14 @@
     {{> tabular table=TabularTables.Pairs selector=pairsSelector class="table table-striped table-bordered"}}
   </article>
   {{#if currentUser.profile.admin}}
-    admin<br>
     {{#if alternatives.count}}
-      has alternatives<br>
-      {{#if criteria.count}}
-        has criteria<br>
+      {{#if monkeys.count}}
+        <button class="btn next-round">Start New Round</button>
       {{else}}
-        Create Criteria before starting the first round!<br>
+        Create Monkeys before starting the first round!<br>
       {{/if}}
     {{else}}
       Create Alternatives before starting the first round!<br>
     {{/if}}
-  {{else}}
-    not Admin<br>
   {{/if}}
-
-  alternatives: {{alternatives.count}}
-  <br>
-  criteria {{criteria.count}}
 </template>

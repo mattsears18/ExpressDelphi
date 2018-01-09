@@ -10,7 +10,7 @@ STUDIES
     currentRound      Integer
     open              Boolean
     alternatives      --hasMany
-    criteria          --hasMany
+    monkeys           --hasMany
     users             --hasMany
 
 ALTERNATIVES
@@ -19,28 +19,24 @@ ALTERNATIVES
     consensusReached  Boolean
     study             --belongsToOne
     weightVotes       --hasMany
-    roundCriteria     --hasMany
 
-CRITERIA
+MONKEY
     name              String
     desc              String
     weight            Float
     study             --belongsToOne
 
-ALTERNATIVE_CRITERIA
-    consensusReached  Boolean
 
 WEIGHTVOTES
-    criterion         --belongsToOne
+    monkey            --belongsToOne
     user              --belongsToOne
     weight            Integer
 
 
 PAIRS
     study             --belongsToOne
-    roundCriteria     Integer
     alternative       --belontsToOne
-    criterion         --belongsToOne
+    monkeys           --belongsToOne
     consensusReached  Boolean
 
 
@@ -48,15 +44,14 @@ RATING
     user              --belongsToOne
     pair              --belongsToOne
     study             --belongsToOne
-    roundCriteria     Integer
     alternative       --belongsToOne
-    criterion         --belongsToOne
+    monkeys           --belongsToOne
     value             Integer (1 to 10)
 
 
 
-select all alternatives that have roundCriteria (consensus not reached yet) that
-  match the currentStudy's currentRound and all of the criteria haven't already
+select all alternatives that have roundMonkey (consensus not reached yet) that
+  match the currentStudy's currentRound and all of the monkey haven't already
   been rated by the current user. Randomly display one of the alternatives to
   the user and ask them to complete the ratings.
 

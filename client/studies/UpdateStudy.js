@@ -1,8 +1,8 @@
 Template.UpdateStudy.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    var resourceId = FlowRouter.getParam('studyId');
-    self.subscribe('currentStudy', resourceId);
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('currentStudy', studyId);
   });
 });
 

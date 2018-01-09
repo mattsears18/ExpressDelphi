@@ -40,23 +40,6 @@ Meteor.publish('singleMonkey', function(id) {
 });
 
 
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-// CRITERIA PUBLICATIONS
-////////////////////////////////////////////////////////////////////////////////
-Meteor.publish('criteria', function(studyId) {
-  return Criteria.find({_id: studyId});
-});
-
-Meteor.publish('singleCriterion', function(id) {
-  check(id, String);
-  return Criteria.find({_id: id});
-});
-
-
-
 ////////////////////////////////////////////////////////////////////////////////
 // PAIRS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +60,7 @@ Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, 
       },
       {
         find: function(pair) {
-          return Criteria.find({_id: pair.criterionId}, {limit: 1, fields: {name: 1, studyId: 1}});
+          return Monkeys.find({_id: pair.monkeyId}, {limit: 1, fields: {name: 1, studyId: 1}});
         }
       },
     ]
