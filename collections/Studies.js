@@ -32,6 +32,7 @@ StudySchema = new SimpleSchema({
   },
   currentRound: {
     type: Number,
+    label: 'Current Round (set to 0 for a new study)',
     defaultValue: 0,
   },
   open: {

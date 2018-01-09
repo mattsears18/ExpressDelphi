@@ -11,7 +11,7 @@ Template.Study.helpers({
     return Studies.findOne();
   },
   pairsSelector() {
-    study = Studies.findOne({_id: FlowRouter.getParam('studyId')})
+    study = Studies.findOne({_id: FlowRouter.getParam('studyId')});
 
     if(study) {
       return {

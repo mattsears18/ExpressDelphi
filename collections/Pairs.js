@@ -24,11 +24,13 @@ PairSchema = new SimpleSchema({
   round: {
     type: Number,
   },
-  alternative: {
+  alternativeId: {
     type: String,
+    optional: true,
   },
   criterion: {
     type: String,
+    optional: true,
   },
   consensusReached: {
     type: Boolean,
@@ -53,7 +55,13 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   columns: [
-    {data: "alternative", title: "Alternative"},
+    {
+       title: "Alternative",
+       render: function(data, type, row, meta){
+         console.log(row.alternative);
+         return '<font color="red">Alternative placeholder - pick back up in the "Pairs.js" file</font>';
+       }
+    },
     {data: "criterion", title: "Criterion"},
     {
       data: "comments",
@@ -78,3 +86,7 @@ PairsTabular = new Tabular.Table({
   limit: 500,
   paging_type: 'full_numbers',
 });
+
+Pairs.expose();
+
+export default Pairs;

@@ -85,3 +85,5 @@ AlternativesTabular = new Tabular.Table({
   ],
   lengthChange: false,
 });
+
+export default Alternatives;
