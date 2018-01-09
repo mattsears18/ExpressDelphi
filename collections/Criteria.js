@@ -88,3 +88,5 @@ CriteriaTabular = new Tabular.Table({
   ],
   lengthChange: false,
 });
+
+export default Criteria;

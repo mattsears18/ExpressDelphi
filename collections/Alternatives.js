@@ -32,6 +32,7 @@ AlternativeSchema = new SimpleSchema({
     autoform: {
       rows: 8
     },
+    optional: true,
   },
   studyId: {
     type: String,

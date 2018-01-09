@@ -30,7 +30,7 @@ Meteor.publish('singleAlternative', function(id) {
 // CRITERIA PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
 Meteor.publish('criteria', function(studyId) {
-  return Criteria.find({});
+  return Criteria.find({_id: studyId});
 });
 
 Meteor.publish('singleCriterion', function(id) {

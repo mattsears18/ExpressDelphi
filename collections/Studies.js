@@ -102,3 +102,5 @@ StudiesTabular = new Tabular.Table({
   lengthChange: false,
   paging_type: 'full_numbers',
 });
+
+export default Studies;
