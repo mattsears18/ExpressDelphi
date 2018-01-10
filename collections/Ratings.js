@@ -10,6 +10,11 @@ Ratings = new Mongo.Collection('ratings');
 
 Ratings.allow({
   insert: function(userId, doc) {
+    Ratings.remove({
+      pairId: doc.pairId,
+      userId: doc.userId,
+    });
+
     return !!userId;
   },
   update: function(userId, doc) {
@@ -34,7 +39,6 @@ RatingSchema = new SimpleSchema({
   },
   value: {
     type: Number,
-    optional: true,
   },
   createdAt: {
     type: Date,
