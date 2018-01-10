@@ -69,7 +69,7 @@ Meteor.publish('pairs', function(studyId) {
   });
 });
 
-Meteor.publish('pairs', function(studyId) {
+Meteor.publish('currentPairs', function(studyId) {
   study = Studies.findOne({_id: studyId});
 
   return Pairs.find({
@@ -79,7 +79,6 @@ Meteor.publish('pairs', function(studyId) {
 });
 
 Meteor.publish('singlePair', function(pairId) {
-  console.log(pairId);
   return Pairs.find({_id: pairId});
 });
 
@@ -145,7 +144,7 @@ Meteor.publish('roundRatings', function(studyId) {
     pairIds.push(pair._id);
   });
 
-  return Ratings.find({});
+  return Ratings.find({pairId: {$in: pairIds}});
 });
 
 Meteor.publish('pairRatings', function(pairId) {

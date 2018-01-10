@@ -1,33 +1,51 @@
 <template name="Results">
   <h1>Study Results</h1>
 
-  <div class="new-recipe-container">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>Alternative</th>
-          {{#each criteria}}
-            <th>{{name}}</th>
-          {{/each}}
-          <th>Final Weighted Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each alternatives}}
+  {{#if ratings.count}}
+    <div class="new-recipe-container">
+      <table class="table table-striped table-bordered" id="resultsTable">
+        <thead>
           <tr>
-            <td><a href="/studies/{{study._id}}/alternatives/{{_id}}">{{name}}</a></td>
-            {{#each finalValues.scores}}
-              <td><span class="badge badge-primary">Round {{consensusRound}}</span>&nbsp;&nbsp;
-                {{finalValue}} * ({{weight}}%) = {{weightedValue}}</td>
+            <th>Alternative</th>
+            {{#each criteria}}
+              <th>{{name}}</th>
             {{/each}}
-            <td><strong>{{finalValues.finalScore}}</strong></td>
+            <th>Final Weighted Score</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {{#each alternatives}}
+            <tr>
+              <td><a href="/studies/{{study._id}}/alternatives/{{_id}}">{{name}}</a></td>
+              {{#each finalValues.scores}}
+                <td>
+                  {{#if consensusRound}}
+                    <span class="badge badge-primary">Round {{consensusRound}}</span>&nbsp;&nbsp;
+                  {{else}}
+                    <span class="badge badge-danger">Round {{maxRound}}</span>&nbsp;&nbsp;
+                  {{/if}}
 
-    <div>
-      * <span class="badge badge-primary">Denotes Round Consensus Reached</span>
+                  {{finalValueRounded}} * ({{weightRounded}}%) = {{weightedValueRounded}}
+                </td>
+              {{/each}}
+              <td><strong>{{finalValues.finalScoreRounded}}</strong></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <div><span class="badge badge-primary">Denotes Round Consensus Reached</span></div>
+      <div><span class="badge badge-danger">Denotes Current Round, Consensus Not Yet Reached</span></div>
     </div>
-  </div>
+  {{else}}
+    {{#if study.currentRound}}
+      <div class="alert alert-danger" role="alert"><strong>No Ratings!</strong> <a href="/studies/{{study._id}}/rate">Rate</a> to see results.</div>
+    {{else}}
+      {{#if alternatives}}
+        {{#if criteria}}
+          <div class="alert alert-danger" role="alert"><strong>No Round Started!</strong> <a href="/studies/{{study._id}}">Start the first</a> round.</div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
 </template>

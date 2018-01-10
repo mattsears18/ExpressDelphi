@@ -15,5 +15,5 @@ Template.Results.helpers({
   alternatives: () => { return Alternatives.find(); },
   criteria:     () => { return Criteria.find(); },
   ratings:      () => { return Ratings.find(); },
-  pairs:        () => { return PAirs. find(); },
+  pairs:        () => { return Pairs.find(); },
 });

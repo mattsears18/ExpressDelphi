@@ -16,6 +16,6 @@ Template.Rate.helpers({
   alternatives: () => { return Alternatives.find(); },
   shuffledAlternatives: () => { return _.shuffle(Alternatives.find().fetch()); },
   criteria:     () => { return Criteria.find(); },
-  pairs:        () => { return Pairs.find({studyId: FlowRouter.getParam('studyId')}); },
-  ratings:      () => { return Ratings.find({}); },
+  pairs:        () => { return Pairs.find(); },
+  ratings:      () => { return Ratings.find(); },
 });

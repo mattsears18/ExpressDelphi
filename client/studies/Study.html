@@ -24,10 +24,10 @@
       {{#if criteria.count}}
         <button class="btn next-round">Start New Round</button>
       {{else}}
-        <div class="alert alert-danger" role="alert">Create <a href="/studies/{{study._id}}/criteria">Criteria</a> before starting the first round!</div>
+        <div class="alert alert-danger" role="alert"><strong>Create <a href="/studies/{{study._id}}/criteria">Criteria</a> before starting the first round!</strong></div>
       {{/if}}
     {{else}}
-      <div class="alert alert-danger" role="alert">Create <a href="/studies/{{study._id}}/alternatives">Alternatives</a> before starting the first round!</div>
+      <div class="alert alert-danger" role="alert"><strong>Create <a href="/studies/{{study._id}}/alternatives">Alternatives</a> before starting the first round!</strong></div>
     {{/if}}
   {{/if}}
 </template>

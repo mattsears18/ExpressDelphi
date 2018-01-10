@@ -109,19 +109,27 @@ Alternatives.helpers({
         });
 
         if(pairs) {
-          consensusRound = 0;
+          maxRound = 0;
+          consensusPair = undefined;
+          consensusRound = undefined;
 
           pairs.forEach(function(pair) {
-            if(pair.round > consensusRound) {
-              consensusPair = pair;
+            if(pair.round > maxRound) {
+              maxPair = pair;
+              maxRound = pair.round;
+            }
+
+            if(pair.consensusReached) {
               consensusRound = pair.round;
             }
           });
 
           score = {};
 
+          score.maxRound = maxRound;
+
           finalRatingValues = [];
-          finalRatings = Ratings.find({pairId: consensusPair._id});
+          finalRatings = Ratings.find({pairId: maxPair._id});
 
           finalRatings.forEach(function(rating) {
             finalRatingValues.push(rating.value);
@@ -130,11 +138,18 @@ Alternatives.helpers({
           finalValue = jStat.mean(finalRatingValues);
 
           score.criterionId = criterion._id;
-          score.finalValue = finalValue,
+
+          score.finalValue = finalValue;
+          score.finalValueRounded = Math.round(score.finalValue * 1000) / 1000;
+
           score.weight = criterion.weight;
+          score.weightRounded = Math.round(score.weight * 1000) / 1000;
+
           score.weightedValue = score.finalValue * 0.01 * score.weight;
-          score.consensusRound = consensusRound,
-          score.ratings = finalRatings,
+          score.weightedValueRounded = Math.round(score.weightedValue * 1000) / 1000;
+
+          score.consensusRound = consensusRound;
+          score.ratings = finalRatings;
 
           data.scores.push(score);
         }
@@ -145,6 +160,8 @@ Alternatives.helpers({
       data.scores.forEach(function(score){
         data.finalScore += score.weightedValue;
       });
+
+      data.finalScoreRounded = Math.round(data.finalScore * 1000) / 1000;
 
       return data;
     }

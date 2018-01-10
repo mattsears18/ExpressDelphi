@@ -88,10 +88,11 @@ CriteriaTabular = new Tabular.Table({
       data: "weight",
       title: "Weight",
       render: function(data, type, row, meta){
-         data = `${data}%`;
-         return data;
+        if(data) {
+          data = `${data}%`;
+          return data;
+        }
       }
-
     },
   ],
   lengthChange: false,
