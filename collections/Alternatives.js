@@ -1,6 +1,7 @@
 import SimpleSchema from 'simpl-schema';
 import Tabular from 'meteor/aldeed:tabular';
 import { Template } from 'meteor/templating';
+import { jStat } from 'jStat';
 
 
 SimpleSchema.extendOptions(['autoform']);
@@ -93,22 +94,50 @@ Alternatives.helpers({
     return Pairs.find({alternativeId: this._id});
   },
   finalValues() {
-    criteria = Criteria.find({studyId: this.studyId});
+    alternative = this;
+
+    criteria = Criteria.find({studyId: alternative.studyId});
 
     if(criteria) {
       data = {};
       data.scores = [];
 
       criteria.forEach(function(criterion) {
-        score = {};
+        pairs = Pairs.find({
+          criterionId: criterion._id,
+          alternativeId: alternative._id,
+        });
 
-        score.criterionId = criterion._id;
-        score.finalValue = 6;
-        score.weight = criterion.weight;
-        score.weightedValue = score.finalValue * 0.01 * score.weight;
-        score.consensusRound = 4,
+        if(pairs) {
+          consensusRound = 0;
 
-        data.scores.push(score);
+          pairs.forEach(function(pair) {
+            if(pair.round > consensusRound) {
+              consensusPair = pair;
+              consensusRound = pair.round;
+            }
+          });
+
+          score = {};
+
+          finalRatingValues = [];
+          finalRatings = Ratings.find({pairId: consensusPair._id});
+
+          finalRatings.forEach(function(rating) {
+            finalRatingValues.push(rating.value);
+          });
+
+          finalValue = jStat.mean(finalRatingValues);
+
+          score.criterionId = criterion._id;
+          score.finalValue = finalValue,
+          score.weight = criterion.weight;
+          score.weightedValue = score.finalValue * 0.01 * score.weight;
+          score.consensusRound = consensusRound,
+          score.ratings = finalRatings,
+
+          data.scores.push(score);
+        }
       });
 
       data.finalScore = 0

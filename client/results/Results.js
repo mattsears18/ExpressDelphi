@@ -6,6 +6,7 @@ Template.Results.onCreated(function() {
     self.subscribe('alternatives', studyId);
     self.subscribe('criteria', studyId);
     self.subscribe('ratings', studyId);
+    self.subscribe('pairs', studyId);
   });
 });
 
@@ -14,4 +15,5 @@ Template.Results.helpers({
   alternatives: () => { return Alternatives.find(); },
   criteria:     () => { return Criteria.find(); },
   ratings:      () => { return Ratings.find(); },
+  pairs:        () => { return PAirs. find(); },
 });

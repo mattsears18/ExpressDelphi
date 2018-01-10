@@ -6,7 +6,7 @@ Template.Rate.onCreated(function() {
     self.subscribe('currentStudy', studyId);
     self.subscribe('roundAlternatives', studyId);
     self.subscribe('criteria', studyId);
-    self.subscribe('pairs', studyId);
+    self.subscribe('currentPairs', studyId);
     self.subscribe('roundRatings', studyId);
   });
 });

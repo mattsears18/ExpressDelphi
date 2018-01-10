@@ -64,6 +64,12 @@ Meteor.publish('singleCriterion', function(id) {
 // PAIRS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
 Meteor.publish('pairs', function(studyId) {
+  return Pairs.find({
+    studyId: studyId,
+  });
+});
+
+Meteor.publish('pairs', function(studyId) {
   study = Studies.findOne({_id: studyId});
 
   return Pairs.find({
