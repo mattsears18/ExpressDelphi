@@ -25,12 +25,25 @@ Meteor.publish('singleAlternative', function(id) {
   return Alternatives.find({_id: id});
 });
 
-Meteor.publish('incompleteAlternative', function(studyId) {
+Meteor.publish('roundAlternatives', function(studyId) {
   check(studyId, String);
 
-  study = Studies.find({_id: studyId});
+  study = Studies.findOne({_id: studyId});
 
-  return Alternatives.find({studyId: studyId});
+  pairs = Pairs.find({
+    studyId: studyId,
+    round: study.currentRound
+  });
+
+  alternativeIds = [];
+
+  pairs.forEach(function(pair) {
+    alternativeIds.push(pair.alternativeId);
+  });
+
+  alternativeIds = Array.from(new Set(alternativeIds));
+
+  return Alternatives.find({_id: {$in: alternativeIds}});
 });
 
 
@@ -57,6 +70,11 @@ Meteor.publish('pairs', function(studyId) {
     studyId: studyId,
     round: study.currentRound,
   });
+});
+
+Meteor.publish('singlePair', function(pairId) {
+  console.log(pairId);
+  return Pairs.find({_id: pairId});
 });
 
 
@@ -88,10 +106,52 @@ Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, 
 ////////////////////////////////////////////////////////////////////////////////
 // RATINGS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
-Meteor.publish('userRatings', function(studyId) {
-  //study = Studies.findOne({_id: studyId});
+Meteor.publish('ratings', function(studyId) {
+  check(studyId, String);
 
-  return Ratings.find({
-    
+  study = Studies.findOne({_id: studyId});
+
+  pairs = Pairs.find({ studyId: studyId });
+
+  pairIds = [];
+
+  pairs.forEach(function(pair) {
+    pairIds.push(pair._id);
   });
+
+  return Ratings.find({});
+});
+
+
+Meteor.publish('roundRatings', function(studyId) {
+  check(studyId, String);
+
+  study = Studies.findOne({_id: studyId});
+
+  pairs = Pairs.find({
+    studyId: studyId,
+    round: study.currentRound
+  });
+
+  pairIds = [];
+
+  pairs.forEach(function(pair) {
+    pairIds.push(pair._id);
+  });
+
+  return Ratings.find({});
+});
+
+Meteor.publish('pairRatings', function(pairId) {
+  check(pairId, String);
+  return Ratings.find({pairId: pairId});
+});
+
+
+Meteor.publish('ratings', function(studyId) {
+  check(studyId, String);
+
+  pairs = Pairs.find({studyId: studyId});
+
+  return Ratings.find({pairId: pairId});
 });

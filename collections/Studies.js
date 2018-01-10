@@ -83,7 +83,7 @@ StudiesTabular = new Tabular.Table({
     {
        title: "Results",
        render: function(data, type, row, meta){
-          data = '<a href="/studies/' + row._id + '/results" class="btn btn-primary">Results</a>';
+          data = '<a href="/studies/' + row._id + '/results" class="btn btn-primary">View Study Results</a>';
           return data;
        }
     },

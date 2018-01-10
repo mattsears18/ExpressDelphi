@@ -1,12 +1,15 @@
 <template name="Rate">
-  <h1>Ratings</h1>
-  <p><a href="/studies/{{currentStudy._id}}/ratings">View Your Rating History</a></p>
-  <p>Current Round Progress: X of {{pairs.count}} alternatives completed</p>
+  <div class="progress" >
+    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">X of {{alternatives.count}} Alternatives Completed (25%)</div>
+  </div>
 
-  <p>progress bar</p>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 42%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100">X of {{pairs.count}} Ratings Completed (42%)</div>
+  </div>
 
-  <br><br><br>
+  {{#each shuffledAlternatives}}
+    {{> RatingCard alternative=this}}
+  {{/each}}
 
-  {{> RatingWindow}}
-
+  <a href="/studies/{{currentStudy._id}}/results" class="btn">View Study Results</a>
 </template>

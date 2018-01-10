@@ -92,6 +92,34 @@ Alternatives.helpers({
   pairs() {
     return Pairs.find({alternativeId: this._id});
   },
+  finalValues() {
+    criteria = Criteria.find({studyId: this.studyId});
+
+    if(criteria) {
+      data = {};
+      data.scores = [];
+
+      criteria.forEach(function(criterion) {
+        score = {};
+
+        score.criterionId = criterion._id;
+        score.finalValue = 6;
+        score.weight = criterion.weight;
+        score.weightedValue = score.finalValue * 0.01 * score.weight;
+        score.consensusRound = 4,
+
+        data.scores.push(score);
+      });
+
+      data.finalScore = 0
+
+      data.scores.forEach(function(score){
+        data.finalScore += score.weightedValue;
+      });
+
+      return data;
+    }
+  },
 });
 
 

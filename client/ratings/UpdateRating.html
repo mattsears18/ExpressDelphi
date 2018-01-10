@@ -4,7 +4,17 @@
 
     {{> afQuickField name='pairId' defaultValue=rating.pair._id}}
     {{> afQuickField name='userId' defaultValue=currentUser._id}}
-    {{> afQuickField name='value' label=rating.pair.criterion.name type=Number}}
+
+    <div class="form-group{{#if afFieldIsInvalid name='value'}} has-error{{/if}}">
+      <label class="control-label" for="value">{{rating.pair.criterion.name}}</label>
+      <div class="input-group has-success">
+        {{> afFieldInput name='value' type=Number}}
+        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+      </div>
+      {{#if afFieldIsInvalid name='value'}}
+      <span class="help-block">{{afFieldMessage name='value'}}</span>
+      {{/if}}
+    </div>
 
   {{/autoForm}}
 </template>

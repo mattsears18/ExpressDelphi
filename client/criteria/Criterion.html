@@ -8,6 +8,10 @@
     {{/if}}
   </h1>
 
+  {{#if criterion.weight}}
+    <div><strong>Weight:</strong> {{criterion.weight}}%</div>
+  {{/if}}
+
   {{#if $.Session.get 'updateCriterion'}}
     {{> UpdateCriterion}}
   {{else}}

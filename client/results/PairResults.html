@@ -1,0 +1,17 @@
+<template name="PairResults">
+  <h1>{{pair.alternative.name}}</h1>
+  <h4>{{pair.criterion.name}}</h4>
+
+  {{> ResultsHistogram values=ratingValues}}
+
+  <div class="new-recipe-container">
+    <h4 class="m-t-0">Statistics</h4>
+    <div><strong>n:</strong> {{ratings.count}} ratings</div>
+    <div><strong>Mean:</strong> {{jStat.mean(ratingValues)}}</div>
+    <div><strong>Median:</strong> {{jStat.median(ratingValues)}}</div>
+    <div><strong>Mode:</strong> {{jStat.mode(ratingValues)}}</div>
+    <div><strong>Range:</strong> {{jStat.range(ratingValues)}} [{{jStat.min(ratingValues)}}:{{jStat.max(ratingValues)}}]</div>
+  </div>
+
+  <h3>Comments</h3>
+</template>

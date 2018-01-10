@@ -30,6 +30,11 @@ CriterionSchema = new SimpleSchema({
     },
     optional: true,
   },
+  weight: {
+    type: Number,
+    label: 'Weight',
+    optional: true,
+  },
   studyId: {
     type: String,
     label: 'Study',
@@ -79,6 +84,15 @@ CriteriaTabular = new Tabular.Table({
        }
     },
     {data: "desc", title: "Description"},
+    {
+      data: "weight",
+      title: "Weight",
+      render: function(data, type, row, meta){
+         data = `${data}%`;
+         return data;
+      }
+
+    },
   ],
   lengthChange: false,
 });

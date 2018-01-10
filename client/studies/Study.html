@@ -7,7 +7,6 @@
       {{/unless}}
     {{/if}}
   </h1>
-  <p><a href="/studies/{{study._id}}/results">View the Results of the Study</a></p>
 
   {{#if $.Session.get 'updateStudy'}}
     {{> UpdateStudy}}
@@ -25,10 +24,10 @@
       {{#if criteria.count}}
         <button class="btn next-round">Start New Round</button>
       {{else}}
-        Create Criteria before starting the first round!<br>
+        <div class="alert alert-danger" role="alert">Create <a href="/studies/{{study._id}}/criteria">Criteria</a> before starting the first round!</div>
       {{/if}}
     {{else}}
-      Create Alternatives before starting the first round!<br>
+      <div class="alert alert-danger" role="alert">Create <a href="/studies/{{study._id}}/alternatives">Alternatives</a> before starting the first round!</div>
     {{/if}}
   {{/if}}
 </template>

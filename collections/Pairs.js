@@ -88,6 +88,13 @@ PairsTabular = new Tabular.Table({
       title: "Consensus Reached",
       tmpl: Meteor.isClient && Template.PairsConsensusCell,
     },
+    {
+      data: '_id',
+      title: "Results",
+      render: function(data, type, row, meta) {
+        return `<a href="/studies/${row.studyId}/pairresults/${data}" class="btn btn-primary">View Rating Results</a>`;
+      }
+    },
   ],
   searching: false,
   paging: false,
@@ -105,7 +112,7 @@ Pairs.helpers({
   currentUserRating() {
     return Ratings.findOne({
       pairId: this._id,
-      userId: Meteor.user()._id,
+      userId: Meteor. user()._id,
     });
   },
 });
