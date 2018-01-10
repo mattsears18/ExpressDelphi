@@ -1,0 +1,10 @@
+<template name="UpdateRating">
+  {{#autoForm collection="Ratings" doc=rating id=rating._id type="update"
+    autosave=true class="update-rating-form"}}
+
+    {{> afQuickField name='pairId' defaultValue=rating.pair._id}}
+    {{> afQuickField name='userId' defaultValue=currentUser._id}}
+    {{> afQuickField name='value' label=rating.pair.criterion.name}}
+
+  {{/autoForm}}
+</template>

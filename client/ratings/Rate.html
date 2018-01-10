@@ -1,16 +1,12 @@
 <template name="Rate">
   <h1>Ratings</h1>
   <p><a href="/studies/{{currentStudy._id}}/ratings">View Your Rating History</a></p>
-  <p><a href="/studies/{{currentStudy._id}}/results">View the Results of the Study</a></p>
-  <p>Current Round Progress: X of Y ratings</p>
+  <p>Current Round Progress: X of {{alternatives.count}} alternatives completed</p>
+
   <p>progress bar</p>
-<br><br><br>
-  <h4>Unfinished Pairs</h4>
-  <ul>
-    <li>alternative/criterion pair</li>
-    <li>alternative/criterion pair</li>
-    <li>alternative/criterion pair</li>
-    <li>alternative/criterion pair</li>
-    <li>alternative/criterion pair</li>
-  </ul>
+
+  <br><br><br>
+
+  {{> RatingWindow}}
+
 </template>

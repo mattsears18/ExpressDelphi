@@ -102,6 +102,12 @@ Pairs.helpers({
   criterion() {
     return Criteria.findOne(this.criterionId);
   },
+  currentUserRating() {
+    return Ratings.findOne({
+      pairId: this._id,
+      userId: Meteor.user()._id,
+    });
+  },
 });
 
 export default Pairs;

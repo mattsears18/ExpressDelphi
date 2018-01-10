@@ -25,6 +25,13 @@ Meteor.publish('singleAlternative', function(id) {
   return Alternatives.find({_id: id});
 });
 
+Meteor.publish('incompleteAlternative', function(studyId) {
+  check(studyId, String);
+
+  study = Studies.find({_id: studyId});
+
+  return Alternatives.find({studyId: studyId});
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +50,16 @@ Meteor.publish('singleCriterion', function(id) {
 ////////////////////////////////////////////////////////////////////////////////
 // PAIRS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
+Meteor.publish('pairs', function(studyId) {
+  study = Studies.findOne({_id: studyId});
+
+  return Pairs.find({
+    studyId: studyId,
+    round: study.currentRound,
+  });
+});
+
+
 Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);
@@ -65,4 +82,16 @@ Meteor.publishComposite("tabular_pairsWithRelations", function (tableName, ids, 
       },
     ]
   };
+});
+
+
+////////////////////////////////////////////////////////////////////////////////
+// RATINGS PUBLICATIONS
+////////////////////////////////////////////////////////////////////////////////
+Meteor.publish('userRatings', function(studyId) {
+  //study = Studies.findOne({_id: studyId});
+
+  return Ratings.find({
+    
+  });
 });

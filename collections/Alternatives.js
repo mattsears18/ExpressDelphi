@@ -87,4 +87,12 @@ AlternativesTabular = new Tabular.Table({
   lengthChange: false,
 });
 
+
+Alternatives.helpers({
+  pairs() {
+    return Pairs.find({alternativeId: this._id});
+  },
+});
+
+
 export default Alternatives;

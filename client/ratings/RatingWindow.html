@@ -1,0 +1,14 @@
+<template name="RatingWindow">
+  <div class="new-recipe-container">
+    <h3>{{alternative.name}}</h3>
+    <p>{{alternative.desc}}</p>
+
+    {{#each alternative.pairs}}
+      {{#if currentUserRating}}
+        {{> UpdateRating rating=currentUserRating}}
+      {{else}}
+        {{> NewRating pair=this}}
+      {{/if}}
+    {{/each}}
+  </div>
+</template>

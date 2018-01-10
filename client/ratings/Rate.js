@@ -2,12 +2,19 @@ Template.Rate.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
+
     self.subscribe('currentStudy', studyId);
+    self.subscribe('alternatives', studyId);
+    self.subscribe('criteria', studyId);
+    self.subscribe('pairs', studyId);
+    //self.subscribe('userRatings', studyId);
   });
 });
 
 Template.Rate.helpers({
-  currentStudy: () => {
-    return Studies.findOne();
-  },
+  currentStudy: () => { return Studies.findOne(); },
+  alternatives: () => { return Alternatives.find(); },
+  criteria:     () => { return Criteria.find(); },
+  pairs:        () => { return Pairs.find({studyId: FlowRouter.getParam('studyId')}); },
+  //ratings:      () => { return Ratings.find({studyId: FlowRouter.getParam('studyId')}); },
 });
