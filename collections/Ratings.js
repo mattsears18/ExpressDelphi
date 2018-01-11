@@ -40,6 +40,13 @@ RatingSchema = new SimpleSchema({
   value: {
     type: Number,
   },
+  comment: {
+    type: String,
+    optional: true,
+    autoform: {
+      rows: 4
+    },
+  },
   createdAt: {
     type: Date,
     label: 'Create At',

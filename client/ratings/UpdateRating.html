@@ -18,9 +18,15 @@
         <div><strong>Your Round {{rating.pair.previousRoundPair.round}} Rating:</strong> {{rating.pair.previousRoundPair.currentUserRating.value}}</div>
       </div>
       <div class="col-xs-4">
-        <a href="/studies/{{pair.studyId}}/pairresults/{{pair.previousRoundPair._id}}" class="btn btn-primary">Previous Round Results</a>
+        <a href="/studies/{{rating.pair.studyId}}/pairresults/{{rating.pair.previousRoundPair._id}}" class="btn btn-primary">Previous Round Results</a>
       </div>
     </div>
-
+    <div class="form-group">
+      <label for="Comments">Comments</label>
+      <div class="input-group has-success">
+        {{> afFieldInput name='comment' placeholder="Provide an explanation if your rating deviates from the allowed range"}}
+        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+      </div>
+    </div>
   {{/autoForm}}
 </template>

@@ -8,14 +8,13 @@
     {{/if}}
   </h1>
 
-  <a href="/studies/{{study._id}}/results" class="btn next-round btn-primary">View Study Results</a>
-
   {{#if $.Session.get 'updateStudy'}}
     {{> UpdateStudy}}
   {{else}}
     <p>{{study.desc}}</p>
   {{/if}}
 
+  <a href="/studies/{{study._id}}/results" class="btn next-round btn-primary">View Study Results</a>
 
   <h3>Current Round Rating Pairs</h3>
   <article class="new-recipe-container">

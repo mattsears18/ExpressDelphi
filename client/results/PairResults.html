@@ -1,17 +1,15 @@
 <template name="PairResults">
   <h1>Round {{pair.round}} Results</h1>
 
-  <h3>{{pair.alternative.name}}, {{pair.criterion.name}}</h3>
-
-  {{> ResultsHistogram values=ratingValues}}
+  {{> ResultsHistogram pair=pair}}
 
   <div class="new-recipe-container">
     <h4 class="m-t-0">Statistics</h4>
-    <div><strong>n:</strong> {{ratings.count}} ratings</div>
-    <div><strong>Mean:</strong> {{jStat.mean(ratingValues)}}</div>
-    <div><strong>Median:</strong> {{jStat.median(ratingValues)}}</div>
-    <div><strong>Mode:</strong> {{jStat.mode(ratingValues)}}</div>
-    <div><strong>Range:</strong> {{jStat.range(ratingValues)}} [{{jStat.min(ratingValues)}}:{{jStat.max(ratingValues)}}]</div>
+    <div><strong>n:</strong> {{pair.ratings.count}} ratings</div>
+    <div><strong>Mean:</strong> {{jStat.mean(pair.ratingValues)}}</div>
+    <div><strong>Median:</strong> {{jStat.median(pair.ratingValues)}}</div>
+    <div><strong>Mode:</strong> {{jStat.mode(pair.ratingValues)}}</div>
+    <div><strong>Range:</strong> {{jStat.range(pair.ratingValues)}} [{{jStat.min(pair.ratingValues)}}:{{jStat.max(pair.ratingValues)}}]</div>
   </div>
 
   <h3>Comments</h3>

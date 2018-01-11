@@ -21,14 +21,5 @@ Template.PairResults.helpers({
   criteria:     () => { return Criteria.find(); },
   pair:         () => { return Pairs.findOne(); },
   ratings:      () => { return Ratings.find({}); },
-
-  ratingValues: () => {
-    ratings = Ratings.find({}, {value: 1}).fetch();
-
-    values = [];
-    ratings.forEach(function(rating) { values.push(rating.value); });
-
-    return values;
-  },
-  jStat: () => { return jStat },
+  jStat:        () => { return jStat },
 });

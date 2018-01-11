@@ -152,17 +152,37 @@ Pairs.helpers({
       userId: Meteor.user()._id,
     });
   },
+  ratings() {
+    return Ratings.find({
+      pairId: this._id,
+    });
+  },
+  ratingValues() {
+    ratings = this.ratings();
+
+    ratingValues = [];
+    ratings.forEach(function(rating){
+      ratingValues.push(rating.value);
+    });
+
+    return ratingValues;
+  },
   ratingMin() {
-    return 5;
+    return Math.min(this.ratingValues());
   },
   ratingMax() {
-    return 9;
+    return Math.max(this.ratingValues());
   },
   placeholderRange() {
     return this.minVal + ' to ' + this.maxVal + ' Allowed this Round';
   },
   previousRoundPair() {
-    previousPair = Pairs.findOne({ studyId: this.studyId, round: (this.round - 1) });
+    previousPair = Pairs.findOne({
+      studyId: this.studyId,
+      alternativeId: this.alternativeId,
+      criterionId: this.criterionId,
+      round: (this.round - 1)
+    });
 
     return previousPair;
   },
