@@ -155,6 +155,8 @@ Alternatives.helpers({
         }
       });
 
+      //TODO PICK BACK UP HERE
+
       data.finalScore = 0
 
       data.scores.forEach(function(score){
