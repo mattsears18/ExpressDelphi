@@ -13,7 +13,7 @@
           <span class="input-group-addon"><i class="fa fa-check"></i></span>
         </div>
       </div>
-      {{#if pair.previousRoundPair.ratings}}
+      {{#if pair.previousRoundPair.ratings.count}}
         <div class="col-xs-3">
           <div><strong>Round {{rating.pair.previousRoundPair.round}} Distribution:</strong> {{rating.pair.previousRoundPair.ratingMin}} to {{rating.pair.previousRoundPair.ratingMax}}</div>
           <div><strong>Your Round {{rating.pair.previousRoundPair.round}} Rating:</strong> {{rating.pair.previousRoundPair.currentUserRating.value}}</div>
