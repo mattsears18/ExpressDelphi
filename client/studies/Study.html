@@ -8,6 +8,8 @@
     {{/if}}
   </h1>
 
+  <a href="/studies/{{study._id}}/results" class="btn next-round btn-primary">View Study Results</a>
+
   {{#if $.Session.get 'updateStudy'}}
     {{> UpdateStudy}}
   {{else}}
@@ -26,7 +28,7 @@
           <button class="btn next-round">Start New Round</button>
         {{else}}
           {{#if currentStudy.round}}
-            <div class="alert alert-danger" role="alert"><strong>Cannot start round!</strong> Nothing left to rate.</div>    
+            <div class="alert alert-danger" role="alert"><strong>Cannot start round!</strong> Nothing left to rate.</div>
           {{else}}
             <button class="btn next-round">Start New Round</button>
           {{/if}}

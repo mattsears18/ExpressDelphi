@@ -5,7 +5,7 @@
         {{#if this.nextRound}}
           btn-primary btn-yes
         {{else}}
-          btn-option
+          btn-option btn-yes
         {{/if}}
       " data-nextround="true">YES</button>
 
@@ -13,15 +13,15 @@
         {{#unless this.nextRound}}
           btn-deny btn-no
         {{else}}
-          btn-option
+          btn-option btn-no
         {{/unless}}
       " data-nextround="false">NO</button>
 
     {{else}}
       {{#if this.nextRound}}
-        <button class="btn btn-primary btn-yes">YES</button>
+        <button class="btn btn-primary">YES</button>
       {{else}}
-        <button class="btn btn-deny btn-no">NO</button>
+        <button class="btn btn-deny">NO</button>
       {{/if}}
     {{/if}}
   {{/unless}}

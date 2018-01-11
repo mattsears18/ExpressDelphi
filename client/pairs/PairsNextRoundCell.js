@@ -1,5 +1,5 @@
 Template.PairsNextRoundCell.events({
-  'click .btn': function(event) {
+  'click .btn-yes, click .btn-no': function(event) {
     cr = event.target.dataset.nextround;
 
     Pairs.update(
