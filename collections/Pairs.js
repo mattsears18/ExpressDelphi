@@ -35,6 +35,26 @@ PairSchema = new SimpleSchema({
   consensusReached: {
     type: Boolean,
   },
+  nextRound: {
+    type: Boolean,
+    optional: true,
+  },
+  minVal: {
+    type: Number,
+    optional: true,
+  },
+  maxVal: {
+    type: Number,
+    optional: true,
+  },
+  nextRoundMinVal: {
+    type: Number,
+    optional: true,
+  },
+  nextRoundMaxVal: {
+    type: Number,
+    optional: true,
+  },
   createdAt: {
     type: Date,
     label: 'Create At',
@@ -55,7 +75,15 @@ PairsTabular = new Tabular.Table({
   name: "Pairs",
   collection: Pairs,
   pub: "tabular_pairsWithRelations",
-  extraFields: ['alternativeId', 'criterionId', 'studyId'],
+  extraFields: [
+    'alternativeId',
+    'criterionId',
+    'studyId',
+    'minVal',
+    'maxVal',
+    'nextRoundMinVal',
+    'nextRoundMaxVal',
+  ],
   columns: [
     {
       data: 'alternative()',
@@ -89,10 +117,19 @@ PairsTabular = new Tabular.Table({
       tmpl: Meteor.isClient && Template.PairsConsensusCell,
     },
     {
+      data: "nextRound",
+      title: "Include in Next Round",
+      tmpl: Meteor.isClient && Template.PairsNextRoundCell,
+    },
+    {
+      title: "Next Round Range",
+      tmpl: Meteor.isClient && Template.PairsNextRoundRangeCell,
+    },
+    {
       data: '_id',
       title: "Results",
       render: function(data, type, row, meta) {
-        return `<a href="/studies/${row.studyId}/pairresults/${data}" class="btn btn-primary">View Rating Results</a>`;
+        return `<a href="/studies/${row.studyId}/pairresults/${data}" class="btn btn-primary">Results</a>`;
       }
     },
   ],

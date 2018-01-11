@@ -22,7 +22,15 @@
   {{#if currentUser.profile.admin}}
     {{#if alternatives.count}}
       {{#if criteria.count}}
-        <button class="btn next-round">Start New Round</button>
+        {{#if pairs.count}}
+          <button class="btn next-round">Start New Round</button>
+        {{else}}
+          {{#if currentStudy.round}}
+            <div class="alert alert-danger" role="alert"><strong>Cannot start round!</strong> Nothing left to rate.</div>    
+          {{else}}
+            <button class="btn next-round">Start New Round</button>
+          {{/if}}
+        {{/if}}
       {{else}}
         <div class="alert alert-danger" role="alert"><strong>Create <a href="/studies/{{study._id}}/criteria">Criteria</a> before starting the first round!</strong></div>
       {{/if}}

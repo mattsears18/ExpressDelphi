@@ -1,0 +1,28 @@
+<template name="PairsNextRoundCell">
+  {{#unless consensusReached}}
+    {{#if currentUser.profile.admin}}
+      <button class="btn
+        {{#if this.nextRound}}
+          btn-primary btn-yes
+        {{else}}
+          btn-option
+        {{/if}}
+      " data-nextround="true">YES</button>
+
+      &nbsp;<button class="btn
+        {{#unless this.nextRound}}
+          btn-deny btn-no
+        {{else}}
+          btn-option
+        {{/unless}}
+      " data-nextround="false">NO</button>
+
+    {{else}}
+      {{#if this.nextRound}}
+        <button class="btn btn-primary btn-yes">YES</button>
+      {{else}}
+        <button class="btn btn-deny btn-no">NO</button>
+      {{/if}}
+    {{/if}}
+  {{/unless}}
+</template>

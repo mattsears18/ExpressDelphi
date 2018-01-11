@@ -1,0 +1,21 @@
+<template name="PairsNextRoundRangeCell">
+  {{#if this.nextRound}}
+    {{#if currentUser.profile.admin}}
+      {{#autoForm collection="Pairs" id=this._id doc=this type="update"
+        autosave=true}}
+        <div class="form-group row">
+          <div class="col-xs-6">
+            <label for="ex1">Min</label>
+            {{> afFieldInput name='nextRoundMinVal'}}
+          </div>
+          <div class="col-xs-6">
+            <label for="ex2">Max</label>
+            {{> afFieldInput name='nextRoundMaxVal'}}
+          </div>
+        </div>
+      {{/autoForm}}
+    {{else}}
+      [{{nextRoundMinVal}} - {{nextRoundMaxVal}}]
+    {{/if}}
+  {{/if}}
+</template>
