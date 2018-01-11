@@ -10,7 +10,7 @@
         <label for="value"><a href="/studies/{{pair.studyId}}/criteria/{{pair.criterionId}}">{{pair.criterion.name}}</a> ({{pair.criterion.weight}}% weight)</label>
         {{> afFieldInput name='value' type=Number placeholder=pair.placeholderRange}}
       </div>
-      {{#if pair.previousRoundPair}}
+      {{#if pair.previousRoundPair.ratings}}
         <div class="col-xs-3">
           <div><strong>Round {{pair.previousRoundPair.round}} Distribution:</strong> {{pair.previousRoundPair.ratingMin}} to {{pair.previousRoundPair.ratingMax}}</div>
           <div><strong>Your Round {{pair.previousRoundPair.round}} Rating:</strong> {{pair.previousRoundPair.currentUserRating.value}}</div>
@@ -21,7 +21,7 @@
       {{/if}}
     </div>
     <div class="form-group">
-      <label for="Comments">Comments</label>
+      <label class="control-label" for="comment">Comments</label>
       {{> afFieldInput name='comment' placeholder="Provide an explanation if your rating deviates from the allowed range"}}
     </div>
   {{/autoForm}}
