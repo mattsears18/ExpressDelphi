@@ -1,19 +1,25 @@
 <template name="UpdateRating">
   {{#autoForm collection="Ratings" doc=rating id=rating._id type="update"
-    autosave=true class="update-rating-form"}}
+    autosave=true class="update-rating-form well"}}
 
     {{> afQuickField name='pairId' defaultValue=rating.pair._id}}
     {{> afQuickField name='userId' defaultValue=currentUser._id}}
 
-    <div class="form-group{{#if afFieldIsInvalid name='value'}} has-error{{/if}}">
-      <label class="control-label" for="value">{{rating.pair.criterion.name}}</label>
-      <div class="input-group has-success">
-        {{> afFieldInput name='value' type=Number}}
-        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+    <div class="form-group row">
+      <div class="col-xs-5">
+        <label class="control-label" for="value"><a href="/studies/{{rating.pair.studyId}}/criteria/{{rating.pair.criterionId}}">{{rating.pair.criterion.name}}</a></label>
+        <div class="input-group has-success">
+          {{> afFieldInput name='value' type=Number placeholder=rating.pair.placeholderRange}}
+          <span class="input-group-addon"><i class="fa fa-check"></i></span>
+        </div>
       </div>
-      {{#if afFieldIsInvalid name='value'}}
-      <span class="help-block">{{afFieldMessage name='value'}}</span>
-      {{/if}}
+      <div class="col-xs-3">
+        <div><strong>Round {{rating.pair.previousRoundPair.round}} Distribution:</strong> {{rating.pair.previousRoundPair.ratingMin}} to {{rating.pair.previousRoundPair.ratingMax}}</div>
+        <div><strong>Your Round {{rating.pair.previousRoundPair.round}} Rating:</strong> {{rating.pair.previousRoundPair.currentUserRating.value}}</div>
+      </div>
+      <div class="col-xs-4">
+        <a href="/studies/{{pair.studyId}}/pairresults/{{pair.previousRoundPair._id}}" class="btn btn-primary">Previous Round Results</a>
+      </div>
     </div>
 
   {{/autoForm}}

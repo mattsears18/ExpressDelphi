@@ -145,11 +145,7 @@ Alternatives.helpers({
             finalRatingValues.push(rating.value);
           });
 
-          median = jStat.median(finalRatingValues);
-
-          console.log(median);
-
-          finalValue = jStat.mean(finalRatingValues);
+          finalValue = jStat.median(finalRatingValues);
 
           score.criterionId = criterion._id;
 
