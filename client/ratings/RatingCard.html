@@ -3,7 +3,7 @@
     <h3>{{alternative.name}}</h3>
     <p>{{alternative.desc}}</p>
 
-    {{#each alternative.pairs}}
+    {{#each alternative.currentPairs}}
       {{#if currentUserRating}}
         {{> UpdateRating rating=currentUserRating}}
       {{else}}

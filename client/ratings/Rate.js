@@ -6,16 +6,24 @@ Template.Rate.onCreated(function() {
     self.subscribe('currentStudy', studyId);
     self.subscribe('roundAlternatives', studyId);
     self.subscribe('criteria', studyId);
-    self.subscribe('currentPairs', studyId);
-    self.subscribe('roundRatings', studyId);
+    self.subscribe('pairs', studyId);
+    self.subscribe('ratings', studyId);
   });
 });
 
 Template.Rate.helpers({
-  currentStudy: () => { return Studies.findOne(); },
-  alternatives: () => { return Alternatives.find(); },
+  currentStudy:         () => { return Studies.findOne(); },
+  alternatives:         () => { return Alternatives.find(); },
   shuffledAlternatives: () => { return _.shuffle(Alternatives.find().fetch()); },
-  criteria:     () => { return Criteria.find(); },
-  pairs:        () => { return Pairs.find(); },
-  ratings:      () => { return Ratings.find(); },
+  criteria:             () => { return Criteria.find(); },
+  currentPairs:         () => {
+    study = Studies.findOne({_id: FlowRouter.getParam('studyId')});
+
+    if(study) {
+      return Pairs.find({
+        studyId: FlowRouter.getParam('studyId'),
+        round: study.currentRound,
+      });
+    }
+  },
 });

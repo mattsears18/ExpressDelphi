@@ -1,10 +1,22 @@
 <template name="NewRating">
-  {{#autoForm collection="Ratings" id="insertRatingForm" type="insert"
-    autosave=true class="insert-rating-form"}}
+  {{#autoForm collection="Ratings" id=pair._id type="insert"
+    autosave=true class="insert-rating-form" class="well"}}
 
     {{> afQuickField name='pairId' defaultValue=pair._id}}
     {{> afQuickField name='userId' defaultValue=currentUser._id}}
-    {{> afQuickField name='value' label=pair.criterion.name type=Number}}
 
+    <div class="form-group row">
+      <div class="col-xs-5">
+        <label for="value"><a href="/studies/{{pair.studyId}}/criteria/{{pair.criterionId}}">{{pair.criterion.name}}</a></label>
+        {{> afFieldInput name='value' type=Number placeholder=pair.placeholderRange}}
+      </div>
+      <div class="col-xs-3">
+        <div><strong>Round {{pair.previousRoundPair.round}} Distribution:</strong> {{pair.previousRoundPair.ratingMin}} to {{pair.previousRoundPair.ratingMax}}</div>
+        <div><strong>Your Round {{pair.previousRoundPair.round}} Rating:</strong> {{pair.previousRoundPair.currentUserRating.value}}</div>
+      </div>
+      <div class="col-xs-4">
+        <a href="/studies/{{pair.studyId}}/pairresults/{{pair.previousRoundPair._id}}" class="btn btn-primary">Previous Round Results</a>
+      </div>
+    </div>
   {{/autoForm}}
 </template>

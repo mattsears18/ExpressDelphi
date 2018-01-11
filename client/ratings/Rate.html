@@ -1,5 +1,5 @@
 <template name="Rate">
-  <h1>{{ratings.count}} of {{pairs.count}} Ratings Completed</h1>
+  <h1>{{currentStudy.currentRatings.count}} of {{currentPairs.count}} Ratings Completed</h1>
 
   {{#each shuffledAlternatives}}
     {{> RatingCard alternative=this}}

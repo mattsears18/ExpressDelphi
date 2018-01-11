@@ -93,4 +93,27 @@ StudiesTabular = new Tabular.Table({
   paging_type: 'full_numbers',
 });
 
+
+Studies.helpers({
+  currentPairs() {
+    study = this;
+    return Pairs.find({
+      studyId: study._id,
+      round: study.currentRound,
+    });
+  },
+  currentRatings() {
+    study = this;
+    pairs = study.currentPairs();
+
+    pairIds = []
+
+    pairs.forEach(function(pair) {
+      pairIds.push(pair._id);
+    });
+
+    return Ratings.find({pairId: {$in: pairIds}});
+  }
+});
+
 export default Studies;

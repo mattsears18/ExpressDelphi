@@ -1,6 +1,7 @@
 <template name="PairResults">
-  <h1>{{pair.alternative.name}}</h1>
-  <h4>{{pair.criterion.name}}</h4>
+  <h1>Round {{pair.round}} Results</h1>
+
+  <h3>{{pair.alternative.name}}, {{pair.criterion.name}}</h3>
 
   {{> ResultsHistogram values=ratingValues}}
 

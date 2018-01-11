@@ -149,8 +149,22 @@ Pairs.helpers({
   currentUserRating() {
     return Ratings.findOne({
       pairId: this._id,
-      userId: Meteor. user()._id,
+      userId: Meteor.user()._id,
     });
+  },
+  ratingMin() {
+    return 5;
+  },
+  ratingMax() {
+    return 9;
+  },
+  placeholderRange() {
+    return this.minVal + ' to ' + this.maxVal + ' Allowed this Round';
+  },
+  previousRoundPair() {
+    previousPair = Pairs.findOne({ studyId: this.studyId, round: (this.round - 1) });
+
+    return previousPair;
   },
 });
 

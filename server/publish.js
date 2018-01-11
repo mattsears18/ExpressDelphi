@@ -152,11 +152,11 @@ Meteor.publish('pairRatings', function(pairId) {
   return Ratings.find({pairId: pairId});
 });
 
-
-Meteor.publish('ratings', function(studyId) {
-  check(studyId, String);
-
-  pairs = Pairs.find({studyId: studyId});
-
-  return Ratings.find({pairId: pairId});
-});
+//
+// Meteor.publish('ratings', function(studyId) {
+//   check(studyId, String);
+//
+//   pairs = Pairs.find({studyId: studyId});
+//
+//   return Ratings.find({pairId: pairId});
+// });

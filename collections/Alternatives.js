@@ -93,6 +93,16 @@ Alternatives.helpers({
   pairs() {
     return Pairs.find({alternativeId: this._id});
   },
+  currentPairs() {
+    alternative = this;
+    study = Studies.findOne({_id: alternative.studyId});
+
+    return Pairs.find({
+      studyId: study._id,
+      alternativeId: alternative._id,
+      round: study.currentRound,
+    });
+  },
   finalValues() {
     alternative = this;
 
