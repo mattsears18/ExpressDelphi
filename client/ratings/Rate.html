@@ -1,5 +1,10 @@
 <template name="Rate">
-  <h1>{{currentStudy.currentRatings.count}} of {{currentPairs.count}} Ratings Completed</h1>
+  <h1>{{currentStudy.currentUserRatings.count}} of {{currentPairs.count}} Ratings Completed</h1>
+
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: {{currentStudy.currentUserRatingProgress}}%;" aria-valuenow="{{currentStudy.currentUserRatingProgress}}" aria-valuemin="0" aria-valuemax="100">{{currentStudy.currentUserRatingProgress}}%</div>
+  </div>
+
 
   {{#each shuffledAlternatives}}
     {{> RatingCard alternative=this}}

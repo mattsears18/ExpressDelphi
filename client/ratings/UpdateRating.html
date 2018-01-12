@@ -13,9 +13,9 @@
           <span class="input-group-addon"><i class="fa fa-check"></i></span>
         </div>
       </div>
-      {{#if pair.previousRoundPair.ratings.count}}
+      {{#if rating.pair.previousRoundPair.ratings.count}}
         <div class="col-xs-3">
-          <div><strong>Round {{rating.pair.previousRoundPair.round}} Distribution:</strong> {{rating.pair.previousRoundPair.ratingMin}} to {{rating.pair.previousRoundPair.ratingMax}}</div>
+          <div><strong>Round {{rating.pair.previousRoundPair.round}} Median:</strong> {{rating.pair.previousRoundPair.ratingMedian}}</div>
           <div><strong>Your Round {{rating.pair.previousRoundPair.round}} Rating:</strong> {{rating.pair.previousRoundPair.currentUserRating.value}}</div>
         </div>
         <div class="col-xs-4">
@@ -24,11 +24,24 @@
       {{/if}}
     </div>
     <div class="form-group">
-      <label class="control-label" for="comment">Comments</label>
-      <div class="input-group has-success">
-        {{> afFieldInput name='comment' placeholder="Provide an explanation if your rating deviates from the allowed range"}}
-        <span class="input-group-addon"><i class="fa fa-check"></i></span>
-      </div>
+      <label class="control-label" for="comment">
+        Comments
+        {{#if rating.deviateMedian}}
+          <span class="badge badge-danger">Required</span>
+        {{else}}
+          {{#if rating.deviateLastRound}}
+            <span class="badge badge-danger">Required</span>
+          {{/if}}
+        {{/if}}
+      </label>
+      {{#if rating.comment}}
+        <div class="input-group has-success">
+          {{> afFieldInput name='comment' placeholder=rating.commentMessage}}
+          <span class="input-group-addon"><i class="fa fa-check"></i></span>
+        </div>
+      {{else}}
+        {{> afFieldInput name='comment' placeholder=rating.commentMessage}}
+      {{/if}}
     </div>
   {{/autoForm}}
 </template>

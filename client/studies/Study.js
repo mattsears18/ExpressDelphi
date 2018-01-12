@@ -5,6 +5,7 @@ Template.Study.onCreated(function() {
     self.subscribe('currentStudy', studyId);
     self.subscribe('alternatives', studyId);
     self.subscribe('criteria', studyId);
+    self.subscribe('roundRatings', studyId);
   });
 });
 
@@ -23,7 +24,6 @@ Template.Study.helpers({
     }
   },
 });
-
 
 
 Template.Study.events({

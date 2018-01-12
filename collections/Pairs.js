@@ -1,7 +1,7 @@
 import SimpleSchema from 'simpl-schema';
 import Tabular from 'meteor/aldeed:tabular';
 import { Template } from 'meteor/templating';
-
+import { jStat } from 'jStat';
 
 SimpleSchema.extendOptions(['autoform']);
 
@@ -100,11 +100,11 @@ PairsTabular = new Tabular.Table({
       }
     },
     {
-      data: "comments",
+      data: "ratingsWithComments()",
        title: "Comments",
        render: function(data, type, row, meta){
-         if(data) {
-           return `<a href="#">View ${data.length}</a>`
+         if(data.count()) {
+           data =  `<a href="/studies/${row.studyId}/pairresults/${row._id}">View ${data.count()}</a>`
          } else {
            data = 'None'
          }
@@ -157,6 +157,12 @@ Pairs.helpers({
       pairId: this._id,
     });
   },
+  ratingsWithComments() {
+    return ratings = Ratings.find({
+      pairId: this._id,
+      comment: {$exists: true},
+    });
+  },
   ratingValues() {
     ratings = this.ratings();
 
@@ -172,6 +178,9 @@ Pairs.helpers({
   },
   ratingMax() {
     return Math.max(this.ratingValues());
+  },
+  ratingMedian() {
+    return jStat.median(this.ratingValues());
   },
   placeholderRange() {
     return this.minVal + ' to ' + this.maxVal + ' Allowed this Round';
