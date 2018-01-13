@@ -3,9 +3,3 @@ Template.Studies.events({
     Session.set('newStudy', true);
   }
 });
-
-Template.Studies.helpers({
-  studies: () => {
-    return Studies.find({});
-  }
-});

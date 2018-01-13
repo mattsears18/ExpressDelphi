@@ -118,6 +118,7 @@ p
 .main-layout
     lost-center 90%
     margin-top 54px
+    padding-right 30px
     +above($med)
         lost-center 90%
         padding-left $side-nav
@@ -426,17 +427,18 @@ input, select, textarea
 .footer
     z-index: 4
     background light-grey
-    width 100%
+    left 0
+    right 30px
     fixed bottom
+    bottom 100px
     padding 5px
-    padding-left 20px
-    padding-bottom 105px
     text-align center
     +above($med)
-        padding-left $side-nav + 20
-        padding-bottom 5px
+        left $side-nav
+        right 30px
+        bottom 0
     +above($large)
-        padding-left $side-nav-large + 20
+        left $side-nav-large
     a
       color #999
 
@@ -455,3 +457,79 @@ input, select, textarea
 
 .badge-danger
     background red
+
+
+.side-chat
+    fixed bottom right
+    margin 0
+    padding 0
+    z-index 5
+    background: dark-blue
+    color white
+    height 100%
+    width 30px
+    font-size 1.2em
+    .chat-label
+        position fixed
+        text-align center
+        padding 4px
+        height 30px
+        width 1000px
+        transform: rotate(-90deg);
+        transform-origin: top left;
+        top calc(50% + 135px + 350px)
+        +above($med)
+            top calc(50% + 185px + 350px)
+    &:hover
+        width 400px
+
+.chat-messages
+    position absolute
+    width 370px
+    height calc(100% - 200px)
+    left 30px
+    top 70px
+    background white
+    color black
+    font-size 0.8em
+    .chat-message-list
+        height 100%
+        width 100%
+        overflow:scroll
+        position absolute
+        bottom 0
+        padding 10px
+        .chat-message
+            padding-top 5px
+            padding-bottom 5px
+
+.chat-new-message
+    position absolute
+    width 370px
+    height 130px
+    border 1px solid grey
+    left 30px
+    bottom 0
+    background white
+
+.chat-new-message-box
+    border 0
+    height 130px
+    width 370px
+    resize: none
+    outline: none
+    font-size 0.8em
+    color black
+    font-weight 500
+
+.chat-message-identifier
+    display inline-block
+    width 10px
+    height 10px
+    margin-right 5px
+
+.m-r-20
+    margin-right 20px
+
+.m-l-20
+    margin-left 20px

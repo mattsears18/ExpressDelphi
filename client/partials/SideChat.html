@@ -1,0 +1,21 @@
+<template name="SideChat">
+  <div class="side-chat">
+    <div class="chat-label">
+      <strong><i class="fa fa-angle-double-up m-r-20"></i> Anonymous Chat <i class="fa fa-angle-double-up m-l-20"></i></strong>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-message-list">
+        {{#each messages}}
+          <div class="chat-message"><div class="chat-message-identifier" style="background-color:{{user.color}}"></div><strong>{{time}}:</strong> {{content}}</div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="chat-new-message">
+      {{#autoForm collection="Messages" id="insertMessageForm" type="insert"}}
+        {{> afFieldInput name="userId"}}
+        {{> afFieldInput name="studyId"}}
+        {{> afFieldInput name="content" class="chat-new-message-box" template="none" placeholder="Type your message"}}
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

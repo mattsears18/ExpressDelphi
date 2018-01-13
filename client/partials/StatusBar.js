@@ -7,7 +7,7 @@ Template.StatusBar.onCreated(function() {
 });
 
 Template.StatusBar.helpers({
-  currentStudy: () => {
+  study: () => {
     return Studies.findOne();
   },
 });

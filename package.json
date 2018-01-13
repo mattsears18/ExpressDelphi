@@ -15,7 +15,8 @@
     "jquery": "^1.11.2",
     "jstat": "^1.7.1",
     "meteor-node-stubs": "^0.3.2",
+    "moment": "^2.20.1",
     "plotly.js": "^1.31.2",
-    "simpl-schema": "^1.4"
+    "simpl-schema": "^1.4.1"
   }
 }

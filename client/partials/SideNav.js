@@ -7,7 +7,7 @@ Template.SideNav.onCreated(function() {
 });
 
 Template.SideNav.helpers({
-  currentStudy: () => {
-    return Studies.findOne();
+  study: () => {
+    return Studies.findOne(FlowRouter.getParam('studyId'));
   },
 });

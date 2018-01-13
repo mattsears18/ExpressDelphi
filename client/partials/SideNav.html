@@ -6,21 +6,21 @@
           <i class="fa fa-home"></i> Studies
         </a>
       </li>
-      {{#if currentStudy}}
+      {{#if study}}
         <li>
-          <a href="/studies/{{currentStudy._id}}/alternatives">
+          <a href="/studies/{{study._id}}/alternatives">
             <i class="fa fa-list"></i> Alternatives
           </a>
         </li>
         <li>
-          <a href="/studies/{{currentStudy._id}}/criteria">
+          <a href="/studies/{{study._id}}/criteria">
             <i class="fa fa-info"></i> Criteria
           </a>
         </li>
 
-        {{#if currentStudy.currentRound}}
+        {{#if study.currentRound}}
           <li>
-            <a href="/studies/{{currentStudy._id}}/rate">
+            <a href="/studies/{{study._id}}/rate">
               <i class="fa fa-check"></i> Rate
             </a>
           </li>

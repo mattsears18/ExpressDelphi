@@ -8,8 +8,10 @@ Meteor.publish('studies', function() {
 });
 
 Meteor.publish('currentStudy', function(id) {
-  check(id, String);
-  return Studies.find({_id: id});
+  if(id) {
+    check(id, String);
+    return Studies.find({_id: id});
+  }
 });
 
 
@@ -152,11 +154,19 @@ Meteor.publish('pairRatings', function(pairId) {
   return Ratings.find({pairId: pairId});
 });
 
-//
-// Meteor.publish('ratings', function(studyId) {
-//   check(studyId, String);
-//
-//   pairs = Pairs.find({studyId: studyId});
-//
-//   return Ratings.find({pairId: pairId});
-// });
+
+////////////////////////////////////////////////////////////////////////////////
+// RATINGS PUBLICATIONS
+////////////////////////////////////////////////////////////////////////////////
+Meteor.publish('messages', function(studyId) {
+  check(studyId, String);
+  return Messages.find({studyId: studyId});
+});
+
+
+////////////////////////////////////////////////////////////////////////////////
+// USERS PUBLICATIONS
+////////////////////////////////////////////////////////////////////////////////
+Meteor.publish('users', function() {
+  return Meteor.users.find({});
+});
