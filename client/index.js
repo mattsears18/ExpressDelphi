@@ -1,7 +1,8 @@
 AutoForm.hooks({
   insertStudyForm: {
     onSuccess: function(formType, studyId) {
-      window.location = "/studies/" + studyId;
+      FlowRouter.go('/');
+    //  window.location = "/studies/" + studyId;
     },
   }
 });
