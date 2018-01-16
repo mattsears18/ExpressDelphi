@@ -9,3 +9,7 @@ Template.Criteria.helpers({
     return {studyId: FlowRouter.getParam('studyId')};
   }
 });
+
+Template.Criteria.destroyed = function(){
+  Session.set('newCriterion', false);
+}

@@ -17,3 +17,7 @@ Template.Criterion.events({
     Session.set('updateCriterion', true);
   },
 });
+
+Template.Criterion.destroyed = function(){
+  Session.set('updateCriterion', false);
+}

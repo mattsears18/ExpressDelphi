@@ -3,3 +3,7 @@ Template.Studies.events({
     Session.set('newStudy', true);
   }
 });
+
+Template.Studies.destroyed = function(){
+  Session.set('newStudy', false);
+}

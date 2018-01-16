@@ -4,6 +4,8 @@
     {{#if currentUser.profile.admin}}
       {{#unless $.Session.get 'updateAlternative'}}
         <a href="#"><i class="fa fa-pencil"></i></a>
+      {{else}}
+        {{#quickRemoveButton collection="Alternatives" _id=alternative._id class="btn-danger delete-resource"}}Delete Alternative{{/quickRemoveButton}}  
       {{/unless}}
     {{/if}}
   </h1>

@@ -4,6 +4,8 @@
     {{#if currentUser.profile.admin}}
       {{#unless $.Session.get 'updateCriterion'}}
         <a href="#"><i class="fa fa-pencil"></i></a>
+      {{else}}
+        {{#quickRemoveButton collection="Criteria" _id=criterion._id class="btn-danger delete-resource"}}Delete Criterion{{/quickRemoveButton}}
       {{/unless}}
     {{/if}}
   </h1>

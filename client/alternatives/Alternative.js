@@ -17,3 +17,7 @@ Template.Alternative.events({
     Session.set('updateAlternative', true);
   },
 });
+
+Template.Alternative.destroyed = function(){
+  Session.set('updateAlternative', false);
+}

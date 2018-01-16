@@ -42,3 +42,8 @@ Template.Study.events({
     Session.set('updateStudy', true);
   },
 });
+
+
+Template.Study.destroyed = function(){
+  Session.set('updateStudy', false);
+}

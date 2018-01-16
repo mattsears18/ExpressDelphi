@@ -1,12 +1,16 @@
 <template name="Study">
-  <h1>
-    {{study.name}}
-    {{#if currentUser.profile.admin}}
-      {{#unless $.Session.get 'updateStudy'}}
-        <a href="#"><i class="fa fa-pencil"></i></a>
-      {{/unless}}
-    {{/if}}
-  </h1>
+  <span>
+    <h1>
+      {{study.name}}
+      {{#if currentUser.profile.admin}}
+        {{#unless $.Session.get 'updateStudy'}}
+          <a href="#"><i class="fa fa-pencil"></i></a>
+        {{else}}
+          {{#quickRemoveButton collection="Studies" _id=study._id class="btn-danger delete-resource"}}Delete Study{{/quickRemoveButton}}
+        {{/unless}}
+      {{/if}}
+    </h1>
+  </span>
 
   {{#if $.Session.get 'updateStudy'}}
     {{> UpdateStudy}}

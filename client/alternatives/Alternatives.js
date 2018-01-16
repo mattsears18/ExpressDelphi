@@ -9,3 +9,7 @@ Template.Alternatives.helpers({
     return {studyId: FlowRouter.getParam('studyId')};
   }
 });
+
+Template.Alternatives.destroyed = function(){
+  Session.set('newAlternative', false);
+}
