@@ -36,6 +36,8 @@ Studies.helpers({
     });
   },
   currentUserRatingProgress() {
-    return Math.round(this.currentUserRatings().count() / this.currentPairs().count() * 1000) / 10
+    if(Meteor.user() && this.currentUserRatings()) {
+      return Math.round(this.currentUserRatings().count() / this.currentPairs().count() * 1000) / 10  
+    }
   }
 });

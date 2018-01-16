@@ -1,17 +1,30 @@
+<head>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
 <template name="PairResults">
   <h1>Round {{pair.round}} Results</h1>
 
-  {{> ResultsHistogram pair=pair}}
-
   <div class="new-recipe-container">
-    <h4 class="m-t-0">Statistics</h4>
-    <div><strong>n:</strong> {{pair.ratings.count}} ratings</div>
-    <div><strong>Mean:</strong> {{jStat.mean(pair.ratingValues)}}</div>
-    <div><strong>Median:</strong> {{jStat.median(pair.ratingValues)}}</div>
-    <div><strong>Mode:</strong> {{jStat.mode(pair.ratingValues)}}</div>
-    <div><strong>Range:</strong> {{jStat.range(pair.ratingValues)}} [{{jStat.min(pair.ratingValues)}}:{{jStat.max(pair.ratingValues)}}]</div>
-    <div><strong>Median Absolute Deviation:</strong> {{jStat.meddev(pair.ratingValues)}}</div>
+    <h3>{{pair.alternative.name}}, {{pair.criterion.name}}</h3>
+    <div id="histogram"></div>
   </div>
 
-  <h3>Comments</h3>
+  <div class="new-recipe-container">
+    <h3 class="m-t-0">Statistics</h3>
+    <div><strong>n:</strong> {{pair.ratings.count}} ratings</div>
+    <div><strong>Mean:</strong> {{pair.ratingMean}}</div>
+    <div><strong>Median:</strong> {{pair.ratingMedian}}</div>
+    <div><strong>Mode:</strong> {{pair.ratingMode}}</div>
+    <div><strong>Range:</strong> {{pair.ratingRange}} [{{pair.ratingMin}}:{{pair.ratingMax}}]</div>
+    <div><strong>Median Absolute Deviation:</strong> {{pair.ratingMeddev}}</div>
+    <div><strong>Mean Absolute Deviation:</strong> {{pair.ratingMeandev}}</div>
+  </div>
+
+  {{#if pair.ratingsWithComments.count}}
+    <h2>Comments</h2>
+    {{#each pair.ratingsWithComments}}
+      {{> ResultComment rating=this}}
+    {{/each}}
+  {{/if}}
 </template>

@@ -1,7 +1,6 @@
 import SimpleSchema from 'simpl-schema';
 import Tabular from 'meteor/aldeed:tabular';
 import { Template } from 'meteor/templating';
-import { jStat } from 'jStat';
 
 SimpleSchema.extendOptions(['autoform']);
 
@@ -89,14 +88,18 @@ PairsTabular = new Tabular.Table({
       data: 'alternative()',
       title: 'Alternative',
       render: function(data, type, row, meta) {
-        return `<a href="/studies/${data.study}/alternatives/${data._id}">${data.name}</a>`;
+        if(data) {
+          return `<a href="/studies/${data.study}/alternatives/${data._id}">${data.name}</a>`;
+        }
       }
     },
     {
       data: 'criterion()',
       title: 'Criterion',
       render: function(data, type, row, meta) {
-        return `<a href="/studies/${data.study}/criteria/${data._id}">${data.name}</a>`;
+        if(data) {
+          return `<a href="/studies/${data.study}/criteria/${data._id}">${data.name}</a>`;
+        }
       }
     },
     {
@@ -137,64 +140,6 @@ PairsTabular = new Tabular.Table({
   paging: false,
   limit: 500,
   paging_type: 'full_numbers',
-});
-
-Pairs.helpers({
-  alternative() {
-    return Alternatives.findOne(this.alternativeId);
-  },
-  criterion() {
-    return Criteria.findOne(this.criterionId);
-  },
-  currentUserRating() {
-    return Ratings.findOne({
-      pairId: this._id,
-      userId: Meteor.user()._id,
-    });
-  },
-  ratings() {
-    return Ratings.find({
-      pairId: this._id,
-    });
-  },
-  ratingsWithComments() {
-    return ratings = Ratings.find({
-      pairId: this._id,
-      comment: {$exists: true},
-    });
-  },
-  ratingValues() {
-    ratings = this.ratings();
-
-    ratingValues = [];
-    ratings.forEach(function(rating){
-      ratingValues.push(rating.value);
-    });
-
-    return ratingValues;
-  },
-  ratingMin() {
-    return Math.min(this.ratingValues());
-  },
-  ratingMax() {
-    return Math.max(this.ratingValues());
-  },
-  ratingMedian() {
-    return jStat.median(this.ratingValues());
-  },
-  placeholderRange() {
-    return this.minVal + ' to ' + this.maxVal + ' Allowed this Round';
-  },
-  previousRoundPair() {
-    previousPair = Pairs.findOne({
-      studyId: this.studyId,
-      alternativeId: this.alternativeId,
-      criterionId: this.criterionId,
-      round: (this.round - 1)
-    });
-
-    return previousPair;
-  },
 });
 
 export default Pairs;

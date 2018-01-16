@@ -2,9 +2,7 @@ import SimpleSchema from 'simpl-schema';
 import Tabular from 'meteor/aldeed:tabular';
 import { Template } from 'meteor/templating';
 
-
 SimpleSchema.extendOptions(['autoform']);
-
 
 Criteria = new Mongo.Collection('criteria');
 

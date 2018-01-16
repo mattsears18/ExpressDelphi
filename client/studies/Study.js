@@ -34,7 +34,7 @@ Template.Study.events({
       if (err) {
         alert(err);
       } else {
-        // SUCCESS
+        FlowRouter.go('rate', {studyId: FlowRouter.getParam('studyId')});
       }
     });
   },

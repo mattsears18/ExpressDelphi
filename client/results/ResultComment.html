@@ -1,0 +1,20 @@
+<template name="ResultComment">
+  <div class="new-recipe-container">
+    <div class="row">
+      <div class="col-xs-3">
+        <div>
+          <strong>Rating:</strong> {{rating.value}}
+          {{#if rating.previousRoundRating}}
+            <span><i class="fa fa-sort-{{rating.roundChangeDirection}} {{rating.roundChangeDirection}}"></i>{{rating.roundAbsChange}} </span>
+          {{/if}}
+        </div>
+
+        {{#if rating.previousRoundRating}}
+          <div><strong>Previous Rating:</strong> {{rating.previousRoundRating.value}}</div>
+        {{/if}}
+
+      </div>
+      <div class="col-xs-9">{{rating.comment}}</div>
+    </div>
+  </div>
+</template>
