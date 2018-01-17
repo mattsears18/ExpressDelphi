@@ -135,18 +135,20 @@ Meteor.publish('roundRatings', function(studyId) {
 
   study = Studies.findOne({_id: studyId});
 
-  pairs = Pairs.find({
-    studyId: studyId,
-    round: study.currentRound
-  });
+  if(study) {
+    pairs = Pairs.find({
+      studyId: studyId,
+      round: study.currentRound
+    });
 
-  pairIds = [];
+    pairIds = [];
 
-  pairs.forEach(function(pair) {
-    pairIds.push(pair._id);
-  });
+    pairs.forEach(function(pair) {
+      pairIds.push(pair._id);
+    });
 
-  return Ratings.find({pairId: {$in: pairIds}});
+    return Ratings.find({pairId: {$in: pairIds}});
+  }
 });
 
 Meteor.publish('pairRatings', function(pairId) {
@@ -168,5 +170,9 @@ Meteor.publish('messages', function(studyId) {
 // USERS PUBLICATIONS
 ////////////////////////////////////////////////////////////////////////////////
 Meteor.publish('users', function() {
-  return Meteor.users.find({});
+  return Meteor.users.find({}, {
+    fields: {
+      _id: 1,
+    }
+  });
 });

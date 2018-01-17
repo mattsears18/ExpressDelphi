@@ -40,7 +40,9 @@ MessageSchema = new SimpleSchema({
   userId: {
     type: String,
     autoValue: function() {
-      return this.userId;
+      if(!this.isSet) {
+        return this.userId;
+      }
     },
     autoform: {
       type: 'hidden',

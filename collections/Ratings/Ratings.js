@@ -29,6 +29,11 @@ RatingSchema = new SimpleSchema({
     autoform: {
       type: 'hidden',
     },
+    autoValue: function() {
+      if(!this.isSet) {
+        return this.userId;
+      }
+    },
   },
   pairId: {
     type: String,
