@@ -75,6 +75,7 @@ AlternativesTabular = new Tabular.Table({
   name: "Alternatives",
   collection: Alternatives,
   columns: [
+    {data: "number", title: "Number"},
     {
        data: "name",
        title: "Name",
