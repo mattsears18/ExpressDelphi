@@ -76,18 +76,12 @@ Alternatives.helpers({
     });
 
     return results;
-    //
-    // [{
-    //   criterion,
-    //   maxRatedPair,
-    // }]
-
   },
   currentPairs() {
     alternative = this;
-    study = Studies.find({_id: alternative.studyId});
+    study = Studies.findOne({_id: alternative.studyId});
 
-    return Pairs.findOne({
+    return Pairs.find({
       studyId: study._id,
       alternativeId: alternative._id,
       round: study.currentRound,
