@@ -3,16 +3,91 @@ import { jStat } from 'jStat';
 
 Alternatives.helpers({
   study() {
-    return Studies.find({_id: this.studyId});
+    return Studies.findOne({_id: this.studyId});
   },
   pairs() {
     return Pairs.find({alternativeId: this._id});
   },
+  roundCriteriaPairs() {
+    alternative = this;
+    study = alternative.study();
+    criteria = alternative.study().criteria();
+
+    if(study) {
+      roundPairs = [];
+
+      for(round=1; round <= study.currentRound; round++) {
+        criteriaPairs = [];
+        criteria.forEach(function(criterion) {
+          pair = Pairs.findOne({
+            alternativeId: alternative._id,
+            criterionId: criterion._id,
+            round: round
+          });
+
+          criteriaPairs.push({
+            criterion: criterion._id,
+            pair: pair,
+          });
+        });
+
+        roundPairs.push({
+          round: round,
+          criteria: criteriaPairs,
+        });
+      }
+
+      return roundPairs;
+    }
+  },
+  criteriaMaxRatedRounds() {
+    alternative = this;
+    study = alternative.study();
+    criteria = study.criteria();
+
+    results = [];
+
+    criteria.forEach(function(criterion) {
+      pairs = Pairs.find({
+        alternativeId: alternative._id,
+        criterionId: criterion._id,
+      });
+
+      maxRound = 0;
+      maxPair = {};
+
+      pairs.forEach(function(pair) {
+        if(pair.round > maxRound) {
+          ratings = Ratings.find({
+            pairId: pair._id
+          });
+
+          if(ratings.count()) {
+            maxRound = pair.round;
+            maxPair = pair;
+          }
+        }
+      });
+
+      results.push({
+        maxRound: maxRound,
+        maxPair: maxPair,
+      });
+    });
+
+    return results;
+    //
+    // [{
+    //   criterion,
+    //   maxRatedPair,
+    // }]
+
+  },
   currentPairs() {
     alternative = this;
-    study = Studies.findOne({_id: alternative.studyId});
+    study = Studies.find({_id: alternative.studyId});
 
-    return Pairs.find({
+    return Pairs.findOne({
       studyId: study._id,
       alternativeId: alternative._id,
       round: study.currentRound,

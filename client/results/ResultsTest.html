@@ -1,0 +1,46 @@
+<template name="ResultsTest">
+  <h1>Results Test</h1>
+  <article class="new-recipe-container">
+    <table class="table table-striped table-bordered" id="alternativesTableTest">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Name</th>
+          <th>Round</th>
+          {{#each criteria}}
+          <th>{{name}}</th>
+          {{/each}}
+          <th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each alternatives}}
+          <tr>
+            <td rowspan="{{rowspan}}">{{number}}</td>
+            <td rowspan="{{rowspan}}">{{name}}</td>
+          </tr>
+          {{#each roundCriteriaPairs}}
+            <tr>
+              <td>{{round}}</td>
+              {{#each this.criteria}}
+                <td>{{#if this.pair.ratings.count}}[{{this.pair.ratings.count}}]{{/if}} {{this.pair.ratingMedian}}</td>
+              {{/each}}
+              <td>meh</td>
+            </tr>
+          {{/each}}
+          <tr>
+            <th>Final</th>
+            {{#each criteriaMaxRatedRounds}}
+              <td><span class="badge badge-danger">Round {{this.maxRound}}</span> {{this.maxPair.ratingMedian}}</td>
+            {{/each}}
+            <td></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+
+
+
+  </article>
+</template>
