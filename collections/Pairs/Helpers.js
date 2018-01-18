@@ -50,6 +50,13 @@ Pairs.helpers({
   ratingMedian() {
     return jStat.median(this.ratingValues());
   },
+  weightedRatingMedian() {
+    criterion = Criteria.findOne({_id: this.criterionId});
+    return this.ratingMedian() * criterion.weight / 100;
+  },
+  weightedRatingMedianRounded() {
+    return Math.round(this.weightedRatingMedian() * 1000) / 1000;
+  },
   ratingMode() {
     return jStat.mode(this.ratingValues());
   },

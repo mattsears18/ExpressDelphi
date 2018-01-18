@@ -77,6 +77,16 @@ Alternatives.helpers({
 
     return results;
   },
+  finalScore() {
+    score = 0;
+    this.criteriaMaxRatedRounds().forEach(function(set) {
+      score += set.maxPair.weightedRatingMedian();
+    });
+    return score;
+  },
+  finalScoreRounded() {
+    return Math.round(this.finalScore() * 1000) / 1000;
+  },
   currentPairs() {
     alternative = this;
     study = Studies.findOne({_id: alternative.studyId});

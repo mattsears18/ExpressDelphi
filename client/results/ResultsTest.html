@@ -25,15 +25,26 @@
               {{#each this.criteria}}
                 <td>{{#if this.pair.ratings.count}}[{{this.pair.ratings.count}}]{{/if}} {{this.pair.ratingMedian}}</td>
               {{/each}}
-              <td>meh</td>
+              <td></td>
             </tr>
           {{/each}}
           <tr>
             <th>Final</th>
             {{#each criteriaMaxRatedRounds}}
-              <td><span class="badge badge-danger">Round {{this.maxRound}}</span> {{this.maxPair.ratingMedian}}</td>
+              <td><span class="badge
+                {{#if this.maxPair.consensusReached}}
+                  badge-primary
+                {{else}}
+                  badge-danger
+                {{/if}}">Round {{this.maxRound}}</span>
+
+                {{this.maxPair.ratingMedian}} *
+                ({{this.maxPair.criterion.weightRounded}}%) =
+                {{this.maxPair.weightedRatingMedianRounded}}
+
+              </td>
             {{/each}}
-            <td></td>
+            <td>{{finalScoreRounded}}</td>
           </tr>
         {{/each}}
       </tbody>
