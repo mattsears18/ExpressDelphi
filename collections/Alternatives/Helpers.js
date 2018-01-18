@@ -54,7 +54,7 @@ Alternatives.helpers({
       });
 
       maxRound = 0;
-      maxPair = {};
+      maxPair = null;
 
       pairs.forEach(function(pair) {
         if(pair.round > maxRound) {
@@ -80,7 +80,9 @@ Alternatives.helpers({
   finalScore() {
     score = 0;
     this.criteriaMaxRatedRounds().forEach(function(set) {
-      score += set.maxPair.weightedRatingMedian();
+      if(set.maxPair) {
+        score += set.maxPair.weightedRatingMedian();
+      }
     });
     return score;
   },
