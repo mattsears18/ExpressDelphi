@@ -424,6 +424,29 @@ input, select, textarea
     .current-study
         margin-right 40px
 
+.rating-status
+    fixed top
+    margin-top 104px
+    z-index: 4
+    background light-grey
+    width 100%
+    padding-right 50px
+    padding-left 20px
+    font-size 1.2em
+    +above($med)
+        padding-left $side-nav + 20
+    +above($large)
+        padding-left $side-nav-large + 20
+    .progress
+        margin-bottom 10px
+
+.rating-cards
+    margin-top 70px
+    +above($med)
+        margin-top 70px
+    +above($large)
+        margin-top 85px
+
 .footer
     z-index: 4
     background light-grey
