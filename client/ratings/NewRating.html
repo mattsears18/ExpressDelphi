@@ -7,7 +7,7 @@
 
     <div class="form-group row">
       <div class="col-xs-5">
-        <label for="value"><a href="/studies/{{pair.studyId}}/criteria/{{pair.criterionId}}">{{pair.criterion.name}}</a> ({{pair.criterion.weight}}% weight)</label>
+        <label for="value"><a href="/studies/{{pair.studyId}}/criteria/{{pair.criterionId}}">{{pair.criterion.name}}</a> ({{pair.criterion.weightNormalizedRounded}}% weight)</label>
         {{> afFieldInput name='value' type=Number placeholder=pair.placeholderRange}}
       </div>
       {{#if pair.previousRoundPair.ratings.count}}

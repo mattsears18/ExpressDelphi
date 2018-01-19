@@ -55,7 +55,7 @@ Pairs.helpers({
   },
   weightedRatingMedian() {
     criterion = Criteria.findOne({_id: this.criterionId});
-    return this.ratingMedian() * criterion.weight / 100;
+    return this.ratingMedian() * criterion.weightNormalized() / 100;
   },
   weightedRatingMedianRounded() {
     return Math.round(this.weightedRatingMedian() * 1000) / 1000;

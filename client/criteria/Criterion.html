@@ -11,7 +11,7 @@
   </h1>
 
   {{#if criterion.weight}}
-    <div><strong>Weight:</strong> {{criterion.weight}}%</div>
+    <div><strong>Weight:</strong> {{criterion.weight}}% {{#unless criterion.weightsNormalized}}[normalized: {{criterion.weightNormalizedRounded}}%]{{/unless}}</div>
   {{/if}}
 
   {{#if $.Session.get 'updateCriterion'}}

@@ -9,7 +9,7 @@
             <th>Number</th>
             <th>Alternative</th>
             {{#each criteria}}
-              <th>{{name}} ({{weightRounded}}%)</th>
+              <th>{{name}} ({{weightNormalizedRounded}}%)</th>
             {{/each}}
             <th>Final Weighted Score</th>
           </tr>
@@ -28,7 +28,7 @@
                   {{/if}}">Round {{this.maxRound}}</span>
 
                   {{this.maxPair.ratingMedian}} *
-                  ({{this.maxPair.criterion.weightRounded}}%) =
+                  ({{this.maxPair.criterion.weightNormalizedRounded}}%) =
                   {{this.maxPair.weightedRatingMedianRounded}}
 
                 </td>

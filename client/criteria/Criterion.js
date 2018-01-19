@@ -2,13 +2,16 @@ Template.Criterion.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var criterionId = FlowRouter.getParam('criterionId');
-    self.subscribe('singleCriterion', criterionId);
+    var studyId = FlowRouter.getParam('studyId');
+    self.subscribe('criteria', studyId);
   });
 });
 
 Template.Criterion.helpers({
   criterion: () => {
-    return Criteria.findOne();
+    return Criteria.findOne({
+      _id: FlowRouter.getParam('criterionId'),
+    });
   },
 });
 

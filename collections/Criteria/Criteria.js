@@ -87,10 +87,10 @@ CriteriaTabular = new Tabular.Table({
     {data: "desc", title: "Description"},
     {
       data: "weight",
-      title: "Weight",
-      render: function(data, type, row, meta){
-        if(data) {
-          data = `${data}%`;
+      title: "Weight (%)",
+      render: function(weight, type, criterion, meta){
+        if(weight) {
+          data = `${weight} <strong>(${criterion.weightNormalizedRounded()}%)</strong>`;
           return data;
         }
       }
