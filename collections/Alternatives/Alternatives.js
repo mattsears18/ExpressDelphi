@@ -1,5 +1,4 @@
 import SimpleSchema from 'simpl-schema';
-import Tabular from 'meteor/aldeed:tabular';
 import { Template } from 'meteor/templating';
 
 SimpleSchema.extendOptions(['autoform']);
@@ -67,27 +66,6 @@ AlternativeSchema = new SimpleSchema({
   },
 });
 
-
 Alternatives.attachSchema(AlternativeSchema);
-
-
-AlternativesTabular = new Tabular.Table({
-  name: "Alternatives",
-  collection: Alternatives,
-  columns: [
-    {data: "number", title: "Number"},
-    {
-       data: "name",
-       title: "Name",
-       render: function(data, type, row, meta){
-          data = '<a href="/studies/' + FlowRouter.getParam('studyId') + '/alternatives/' + row._id + '">' + data + '</a>';
-          return data;
-       }
-    },
-    {data: "desc", title: "Description"},
-  ],
-  lengthChange: false,
-});
-
 
 export default Alternatives;
