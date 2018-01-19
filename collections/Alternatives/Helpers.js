@@ -99,79 +99,77 @@ Alternatives.helpers({
       round: study.currentRound,
     });
   },
-  finalValues() {
-    alternative = this;
-
-    criteria = Criteria.find({studyId: alternative.studyId});
-
-    if(criteria) {
-      data = {};
-      data.scores = [];
-
-      criteria.forEach(function(criterion) {
-        pairs = Pairs.find({
-          criterionId: criterion._id,
-          alternativeId: alternative._id,
-        });
-
-        if(pairs) {
-          maxRound = 0;
-          consensusPair = undefined;
-          consensusRound = undefined;
-
-          pairs.forEach(function(pair) {
-            if(pair.round > maxRound) {
-              maxPair = pair;
-              maxRound = pair.round;
-            }
-
-            if(pair.consensusReached) {
-              consensusRound = pair.round;
-            }
-          });
-
-          score = {};
-
-          score.maxRound = maxRound;
-
-          finalRatingValues = [];
-          finalRatings = Ratings.find({pairId: maxPair._id});
-
-          finalRatings.forEach(function(rating) {
-            finalRatingValues.push(rating.value);
-          });
-
-          finalValue = jStat.median(finalRatingValues);
-
-          score.criterionId = criterion._id;
-
-          score.finalValue = finalValue;
-          score.finalValueRounded = Math.round(score.finalValue * 1000) / 1000;
-
-          score.weight = criterion.weight;
-          score.weightRounded = Math.round(score.weight * 1000) / 1000;
-
-          score.weightedValue = score.finalValue * 0.01 * score.weight;
-          score.weightedValueRounded = Math.round(score.weightedValue * 1000) / 1000;
-
-          score.consensusRound = consensusRound;
-          score.ratings = finalRatings;
-
-          data.scores.push(score);
-        }
-      });
-
-      //TODO PICK BACK UP HERE
-
-      data.finalScore = 0
-
-      data.scores.forEach(function(score){
-        data.finalScore += score.weightedValue;
-      });
-
-      data.finalScoreRounded = Math.round(data.finalScore * 1000) / 1000;
-
-      return data;
-    }
-  },
+  // finalValues() {
+  //   alternative = this;
+  //
+  //   criteria = Criteria.find({studyId: alternative.studyId});
+  //
+  //   if(criteria) {
+  //     data = {};
+  //     data.scores = [];
+  //
+  //     criteria.forEach(function(criterion) {
+  //       pairs = Pairs.find({
+  //         criterionId: criterion._id,
+  //         alternativeId: alternative._id,
+  //       });
+  //
+  //       if(pairs) {
+  //         maxRound = 0;
+  //         consensusPair = undefined;
+  //         consensusRound = undefined;
+  //
+  //         pairs.forEach(function(pair) {
+  //           if(pair.round > maxRound) {
+  //             maxPair = pair;
+  //             maxRound = pair.round;
+  //           }
+  //
+  //           if(pair.consensusReached) {
+  //             consensusRound = pair.round;
+  //           }
+  //         });
+  //
+  //         score = {};
+  //
+  //         score.maxRound = maxRound;
+  //
+  //         finalRatingValues = [];
+  //         finalRatings = Ratings.find({pairId: maxPair._id});
+  //
+  //         finalRatings.forEach(function(rating) {
+  //           finalRatingValues.push(rating.value);
+  //         });
+  //
+  //         finalValue = jStat.median(finalRatingValues);
+  //
+  //         score.criterionId = criterion._id;
+  //
+  //         score.finalValue = finalValue;
+  //         score.finalValueRounded = Math.round(score.finalValue * 1000) / 1000;
+  //
+  //         score.weight = criterion.weight;
+  //         score.weightRounded = Math.round(score.weight * 1000) / 1000;
+  //
+  //         score.weightedValue = score.finalValue * 0.01 * score.weight;
+  //         score.weightedValueRounded = Math.round(score.weightedValue * 1000) / 1000;
+  //
+  //         score.consensusRound = consensusRound;
+  //         score.ratings = finalRatings;
+  //
+  //         data.scores.push(score);
+  //       }
+  //     });
+  //
+  //     data.finalScore = 0
+  //
+  //     data.scores.forEach(function(score){
+  //       data.finalScore += score.weightedValue;
+  //     });
+  //
+  //     data.finalScoreRounded = Math.round(data.finalScore * 1000) / 1000;
+  //
+  //     return data;
+  //   }
+  // },
 });

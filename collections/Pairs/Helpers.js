@@ -47,6 +47,9 @@ Pairs.helpers({
   ratingMean() {
     return jStat.mean(this.ratingValues());
   },
+  ratingMeanRounded() {
+    return Math.round(this.ratingMean() * 1000) / 1000;
+  },
   ratingMedian() {
     return jStat.median(this.ratingValues());
   },
@@ -63,8 +66,14 @@ Pairs.helpers({
   ratingMeddev() {
     return jStat.meddev(this.ratingValues());
   },
+  ratingMeddevRounded() {
+    return Math.round(this.ratingMeddev() * 1000) / 1000;
+  },
   ratingMeandev() {
     return jStat.meandev(this.ratingValues());
+  },
+  ratingMeandevRounded() {
+    return Math.round(this.ratingMeandev() * 1000) / 1000;
   },
   ratingMaxCount() {
     var store = this.ratingValues();

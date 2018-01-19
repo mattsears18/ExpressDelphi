@@ -6,9 +6,10 @@
       <table class="table table-striped table-bordered" id="resultsTable">
         <thead>
           <tr>
+            <th>Number</th>
             <th>Alternative</th>
             {{#each criteria}}
-              <th>{{name}}</th>
+              <th>{{name}} ({{weightRounded}}%)</th>
             {{/each}}
             <th>Final Weighted Score</th>
           </tr>
@@ -16,19 +17,23 @@
         <tbody>
           {{#each alternatives}}
             <tr>
+              <td>{{number}}</td>
               <td><a href="/studies/{{study._id}}/alternatives/{{_id}}">{{name}}</a></td>
-              {{#each finalValues.scores}}
-                <td>
-                  {{#if consensusRound}}
-                    <span class="badge badge-primary">Round {{consensusRound}}</span>&nbsp;&nbsp;
+              {{#each criteriaMaxRatedRounds}}
+                <td><span class="badge
+                  {{#if this.maxPair.consensusReached}}
+                    badge-primary
                   {{else}}
-                    <span class="badge badge-danger">Round {{maxRound}}</span>&nbsp;&nbsp;
-                  {{/if}}
+                    badge-danger
+                  {{/if}}">Round {{this.maxRound}}</span>
 
-                  {{finalValueRounded}} * ({{weightRounded}}%) = {{weightedValueRounded}}
+                  {{this.maxPair.ratingMedian}} *
+                  ({{this.maxPair.criterion.weightRounded}}%) =
+                  {{this.maxPair.weightedRatingMedianRounded}}
+
                 </td>
               {{/each}}
-              <td><strong>{{finalValues.finalScoreRounded}}</strong></td>
+              <th>{{finalScoreRounded}}</th>
             </tr>
           {{/each}}
         </tbody>
