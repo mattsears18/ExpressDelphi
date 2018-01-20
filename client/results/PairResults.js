@@ -55,6 +55,7 @@ Template.PairResults.onRendered(function() {
           title: 'Count',
           dtick: 1,
         },
+        bargap: 0.08,
         margin: {
           l: 50,
           r: 0,

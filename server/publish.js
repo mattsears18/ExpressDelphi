@@ -138,7 +138,7 @@ Meteor.publish('roundRatings', function(studyId) {
   if(study) {
     pairs = Pairs.find({
       studyId: studyId,
-      round: study.currentRound
+      round: study.currentRound,
     });
 
     pairIds = [];
