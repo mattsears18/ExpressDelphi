@@ -60,7 +60,7 @@ PairsTabular = new Tabular.Table({
       data: '_id',
       title: "Results",
       render: function(data, type, row, meta) {
-        return `<a href="/studies/${row.studyId}/pairresults/${data}" class="btn btn-primary">Results</a>`;
+        return `<a href="/studies/${row.studyId}/pairresults/${data}" class="btn btn-primary"><i class="fa fa-bar-chart"></i>&nbsp;&nbsp;Results</a>`;
       }
     },
   ],

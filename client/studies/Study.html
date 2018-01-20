@@ -18,7 +18,7 @@
     <p>{{study.desc}}</p>
   {{/if}}
 
-  <a href="/studies/{{study._id}}/results" class="btn btn-primary">View Study Results</a>
+  <a href="/studies/{{study._id}}/results" class="btn btn-primary"><i class="fa fa-table"></i>&nbsp;&nbsp;View Study Results</a>
 
   <h3>Current Round Rating Pairs</h3>
   <article class="new-recipe-container">
@@ -28,12 +28,14 @@
     {{#if alternatives.count}}
       {{#if criteria.count}}
         {{#if pairs.count}}
-          <button class="btn next-round">Start New Round</button>
+          <button class="btn next-round"><i class="fa fa-play"></i>&nbsp;&nbsp;Start Next Round</button>
+          <button class="btn autofill-consensus m-l-10"><i class="fa fa-calculator"></i>&nbsp;&nbsp;Autofill Consensus</button>
         {{else}}
           {{#if currentStudy.round}}
             <div class="alert alert-danger" role="alert"><strong>Cannot start round!</strong> Nothing left to rate.</div>
           {{else}}
-            <button class="btn next-round">Start New Round</button>
+            <button class="btn next-round"><i class="fa fa-play"></i>&nbsp;&nbsp;Start Next Round</button>
+            <button class="btn autofill-consensus m-l-10"><i class="fa fa-calculator"></i>&nbsp;&nbsp;Autofill Consensus</button>
           {{/if}}
         {{/if}}
       {{else}}

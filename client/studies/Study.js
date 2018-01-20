@@ -38,6 +38,15 @@ Template.Study.events({
       }
     });
   },
+  'click .autofill-consensus': function() {
+    Meteor.call('studies.autofillConsensus', {
+      studyId: FlowRouter.getParam('studyId'),
+    }, (err, res) => {
+      if (err) {
+        alert(err);
+      }
+    });
+  },
   'click .fa-pencil': function() {
     Session.set('updateStudy', true);
   },
