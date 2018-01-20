@@ -69,6 +69,20 @@ Pairs.helpers({
   ratingMeddevRounded() {
     return Math.round(this.ratingMeddev() * 1000) / 1000;
   },
+  ratingMaxdev() {
+    pair = this;
+    maxDev = 0;
+    pair.ratingValues().forEach(function(val) {
+      dev = Math.abs(val - pair.ratingMedian());
+      if(dev > maxDev) {
+        maxDev = dev;
+      }
+    })
+    return maxDev;
+  },
+  ratingMaxdevRounded() {
+    return Math.round(this.ratingMaxdev() * 1000) / 1000;
+  },
   ratingMeandev() {
     return jStat.meandev(this.ratingValues());
   },
