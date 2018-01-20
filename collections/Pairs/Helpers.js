@@ -53,6 +53,20 @@ Pairs.helpers({
   ratingMedian() {
     return jStat.median(this.ratingValues());
   },
+  minDash() {
+    if(this.ratingMedian() % 1 != 0) {
+      return pair.ratingMedian() - 1;
+    } else {
+      return pair.ratingMedian() - 1.5;
+    }
+  },
+  maxDash() {
+    if(this.ratingMedian() % 1 != 0) {
+      return pair.ratingMedian() + 1;
+    } else {
+      return pair.ratingMedian() + 1.5;
+    }
+  },
   weightedRatingMedian() {
     criterion = Criteria.findOne({_id: this.criterionId});
     return this.ratingMedian() * criterion.weightNormalized() / 100;

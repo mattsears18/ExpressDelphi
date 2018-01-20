@@ -71,7 +71,31 @@ Template.PairResults.onRendered(function() {
             color: '#73a433',
             width: 4
           },
-        }],
+        },
+        {
+          type: 'line',
+          x0: pair.minDash(),
+          y0: 0,
+          x1: pair.minDash(),
+          y1: pair.ratingMaxCount() + 1,
+          line: {
+            color: '#73a433',
+            width: 4,
+            dash: 'dash',
+          },
+        },
+        {
+          type: 'line',
+          x0: pair.maxDash(),
+          y0: 0,
+          x1: pair.maxDash(),
+          y1: pair.ratingMaxCount() + 1,
+          line: {
+            color: '#73a433',
+            width: 4,
+            dash: 'dash',
+          },
+        },],
         annotations: [{
           x: pair.ratingMedian(),
           xanchor: 'left',
