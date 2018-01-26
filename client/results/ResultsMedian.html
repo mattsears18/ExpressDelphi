@@ -1,0 +1,71 @@
+<template name="ResultsMedian">
+  <h1>Study Results by Median</h1>
+
+  {{#if Template.subscriptionsReady}}
+    <script>
+      $('table').DataTable({
+        "paging":    false,
+        "searching": false,
+      });
+    </script>
+  {{/if}}
+
+  {{#if ratings.count}}
+    <div class="new-recipe-container">
+      <table class="table table-striped table-bordered" id="resultsTable">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Alternative</th>
+            {{#each criteria}}
+              <th>{{name}} Median Score ({{weightNormalizedRounded}}%)</th>
+              <th>Deviations</th>
+            {{/each}}
+            <th>Final Weighted Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each alternatives}}
+            <tr>
+              <td>{{number}}</td>
+              <td><a href="/studies/{{study._id}}/alternatives/{{_id}}">{{name}}</a></td>
+              {{#each criteriaMaxRatedRounds}}
+                <td><span class="badge
+                  {{#if this.maxPair.consensusReached}}
+                    badge-primary
+                  {{else}}
+                    badge-danger
+                  {{/if}}">Round {{this.maxRound}}</span>
+
+                  {{this.maxPair.ratingMedianRounded}} *
+                  ({{this.maxPair.criterion.weightNormalizedRounded}}%) =
+                  {{this.maxPair.weightedRatingMedianRounded}}
+                </td>
+                <td>
+                  Meandev: {{this.maxPair.ratingMeandevRounded}}<br>
+                  Meddev: {{this.maxPair.ratingMeddevRounded}}
+                </td>
+              {{/each}}
+              <th>{{finalScoreMedianRounded}}</th>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <div><span class="badge badge-primary">Round Consensus Reached</span></div>
+      <div><span class="badge badge-danger">Consensus Not Reached, Last Rated Round</span></div>
+      <br>
+      <div>* Values shown for each Alternative/Criterion pair are the <strong>median</strong> of the ratings for each Alternative/Criterion pair</div>
+    </div>
+  {{else}}
+    {{#if study.currentRound}}
+      <div class="alert alert-danger" role="alert"><strong>No Ratings!</strong> <a href="/studies/{{study._id}}/rate">Rate</a> to see results.</div>
+    {{else}}
+      {{#if alternatives}}
+        {{#if criteria}}
+          <div class="alert alert-danger" role="alert"><strong>No Round Started!</strong> <a href="/studies/{{study._id}}">Start the first</a> round.</div>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</template>

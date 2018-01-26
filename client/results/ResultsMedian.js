@@ -1,4 +1,4 @@
-Template.ResultsTest.onCreated(function() {
+Template.ResultsMedian.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var studyId = FlowRouter.getParam('studyId');
@@ -10,14 +10,10 @@ Template.ResultsTest.onCreated(function() {
   });
 });
 
-Template.ResultsTest.helpers({
+Template.ResultsMedian.helpers({
   study:        () => { return Studies.findOne(); },
   alternatives: () => { return Alternatives.find(); },
   criteria:     () => { return Criteria.find(); },
   ratings:      () => { return Ratings.find(); },
   pairs:        () => { return Pairs.find(); },
-  rowspan:      () => {
-    study = Studies.findOne();
-    return study.currentRound + 2;
-  }
 });

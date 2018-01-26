@@ -89,6 +89,18 @@ Alternatives.helpers({
   finalScoreRounded() {
     return Math.round(this.finalScore() * 1000) / 1000;
   },
+  finalScoreMean() {
+    score = 0;
+    this.criteriaMaxRatedRounds().forEach(function(set) {
+      if(set.maxPair) {
+        score += set.maxPair.weightedRatingMean();
+      }
+    });
+    return score;
+  },
+  finalScoreMeanRounded() {
+    return Math.round(this.finalScoreMean() * 1000) / 1000;
+  },
   currentPairs() {
     alternative = this;
     study = Studies.findOne({_id: alternative.studyId});

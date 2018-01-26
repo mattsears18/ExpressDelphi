@@ -40,7 +40,7 @@ PairsTabular = new Tabular.Table({
     },
     {
       data: 'ratingMeandevRounded()',
-      title: 'Mean Deviation from Median',
+      title: 'Mean Deviation from Mean',
     },
     {
       data: "consensusReached",

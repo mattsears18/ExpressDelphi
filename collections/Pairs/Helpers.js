@@ -53,6 +53,9 @@ Pairs.helpers({
   ratingMedian() {
     return jStat.median(this.ratingValues());
   },
+  ratingMedianRounded() {
+    return Math.round(this.ratingMedian() * 1000) / 1000;
+  },
   minDash() {
     if(this.ratingMedian() % 1 != 0) {
       return pair.ratingMedian() - 1;
@@ -73,6 +76,13 @@ Pairs.helpers({
   },
   weightedRatingMedianRounded() {
     return Math.round(this.weightedRatingMedian() * 1000) / 1000;
+  },
+  weightedRatingMean() {
+    criterion = Criteria.findOne({_id: this.criterionId});
+    return this.ratingMean() * criterion.weightNormalized() / 100;
+  },
+  weightedRatingMeanRounded() {
+    return Math.round(this.weightedRatingMean() * 1000) / 1000;
   },
   ratingMode() {
     return jStat.mode(this.ratingValues());
