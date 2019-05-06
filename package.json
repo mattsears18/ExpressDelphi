@@ -1,5 +1,5 @@
 {
-  "name": "delphi3",
+  "name": "express-delphi",
   "private": true,
   "scripts": {
     "start": "meteor run"
@@ -16,7 +16,6 @@
     "datatables.net-dt": "^1.10.16",
     "jStat": "^1.7.1",
     "jquery": "^1.12.4",
-    "jstat": "^1.7.1",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.20.1",
     "plotly.js": "^1.31.2",
