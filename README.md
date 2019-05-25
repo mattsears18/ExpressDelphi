@@ -1,6 +1,6 @@
 # Express Delphi
 
-An app for facilitating Delphi studies
+Traditionally, the Delphi technique requires several weeks or even several months of data collection via email or paper forms, and a considerable effort to assess the results. We used the Express Delphi app to conduct a research study in 1–1/2 days, completely electronically, with all results calculated in real-time. Our participants were physically present in the same room but could have easily been on a conference call.
 
 ## Example Video
 
